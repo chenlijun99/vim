@@ -16,11 +16,20 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 nnoremap H ^
-nnoremap L $
+nnoremap L g_
 vnoremap H ^
-vnoremap L $
+vnoremap L g_
+
+" edit vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+" edit ftplugin for current filetype
+nnoremap <leader>ef :execute printf("vsplit ~/.vim/after/ftplugin/%s.vim", &filetype)<cr>
+nnoremap <leader>sf :execute printf("source ~/.vim/after/ftplugin/%s.vim", &filetype)<cr>
+" edit snippets for current filetype
+nnoremap <leader>es :execute printf("vsplit ~/.vim/snippets/%s.snip", &filetype)<cr>
+nnoremap <leader>ss :execute printf("source ~/.vim/snippets/%s.snip", &filetype)<cr>
+
 nnoremap <silent> <CR> :noh<CR>	" disable the highlighting after a search
 command! W :w !sudo tee %
 
@@ -56,11 +65,6 @@ set shiftwidth=4
 set t_Co=256
 colorscheme gruvbox
 set background=dark
-"if (strftime("%H") < 16)
-"set background=light
-"else
-"set background=dark
-"endif
 
 set guifont=DejaVu\ Sans\ Mono\ 12
 "}}}
@@ -90,12 +94,9 @@ call plug#begin('~/.vim/plugged')
 					\)
 	endfunction
 
-	Plug 'Shougo/denite.nvim'
+	Plug 'Shougo/denite.nvim' , { 'on' : 'Denite' }
 	autocmd! User denite.nvim call SetupDenite()
 	nmap <c-p> :Denite buffer<cr>
-	"}}}
-	"Shougo/neco-vim {{{
-	Plug 'Shougo/neco-vim'
 	"}}}
 	" {{{ Shougo/neocomplete
 	Plug 'Shougo/neocomplete'
@@ -211,17 +212,27 @@ call plug#begin('~/.vim/plugged')
 	"}}}
 
 	" 'majutsushi/tagbar' {{{
-	Plug 'majutsushi/tagbar'
+	Plug 'majutsushi/tagbar', { 'on' : 
+				\['TagbarToggle',
+				\'SidePanel tagbar',
+				\'TagbarOpen']}
 	let g:tagbar_left=1
 	" }}}
 
 	" 'scrooloose/nerdtree' {{{
-	Plug 'scrooloose/nerdtree'
+	Plug 'scrooloose/nerdtree' , { 'on' :
+				\['NERDTreeToggle',
+				\'SidePanel nerdtree',
+				\'NERDTreeFind'] }
 	"let g:NERDTreeWinSize=20
 	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif	" close NERDTree if it's the last window
 	" }}}
 
 	" }}}
+	
+	"tpope/vim-fugitive {{{
+	Plug 'tpope/vim-fugitive'
+	"}}}
 
 	"tpope/vim-surround {{{
 	Plug 'tpope/vim-surround'
@@ -347,10 +358,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'jiangmiao/auto-pairs'
 	"}}}
 
-	"SirVer/ultisnips {{{
-	Plug 'SirVer/ultisnips'
-	"}}}
-	"
 	"'easymotion/vim-easymotion' {{{
 	Plug 'easymotion/vim-easymotion'
 
@@ -361,16 +368,15 @@ call plug#begin('~/.vim/plugged')
 	"}}}
 
 	" Language specific plugins {{{
-
 	" c++ {{{
 	" 'octol/vim-cpp-enhanced-highlight' {{{
-	Plug 'octol/vim-cpp-enhanced-highlight'
+	Plug 'octol/vim-cpp-enhanced-highlight', { 'for' : 'cpp' }
 				"\{'on_ft' : ['cpp']})
 	let g:cpp_class_scope_highlight = 1
 	" }}}
 
 	"'vim-scripts/OmniCppComplete' {{{
-	Plug 'vim-scripts/OmniCppComplete'
+	Plug 'vim-scripts/OmniCppComplete', { 'for' : 'cpp' }
 				"\{'on_ft' : ['cpp']})
 	let OmniCpp_NamespaceSearch = 1
 	let OmniCpp_GlobalScopeSearch = 1
@@ -384,35 +390,54 @@ call plug#begin('~/.vim/plugged')
 	"}}}
 	"}}}
 
+	"Web {{{
+	" javascript {{{
+	Plug 'pangloss/vim-javascript' , { 'for' : 'javascript' }
+	Plug 'othree/javascript-libraries-syntax.vim', { 'for' : 'javascript' }
+	" }}}
+	
+	" css {{{
+	"
+	" }}}
+	
+	"html {{{
+	" html omnifunc
+	Plug 'othree/html5.vim', { 'for' : 'html' }
+
+	Plug 'mattn/emmet-vim', { 'for' : 'html' }
+	let g:user_emmet_leader_key = '<space>'
+
+	Plug 'alvan/vim-closetag', { 'for' : 'html' }
+	let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
+	" }}}
+	
+	"}}}
+
 	" graphviz {{{
 	" graphviz omnifunc
-	Plug 'wannesm/wmgraphviz.vim'
+	Plug 'wannesm/wmgraphviz.vim', { 'for' : 'dot' }
 				"\{'on_ft' : ['dot']})
 	" }}}
 
 	" latex {{{
-	Plug 'vim-latex/vim-latex'
+	Plug 'vim-latex/vim-latex', { 'for' : ['tex', 'latex', 'plaintex']}
 				"\{'on_ft' : ['latex','plaintex','tex']})
 	"}}}
 
-	"html {{{
-	" html omnifunc
-	Plug 'othree/html5.vim'
-				"\{'on_ft' : ['html']})
-
-	" plugin to automatically close tags
-	Plug 'alvan/vim-closetag'
-	let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
-	" }}}
-
 	" cmake {{{
-	Plug 'richq/vim-cmake-completion'
+	Plug 'richq/vim-cmake-completion' , { 'for' : 'cmake' }
 				"\{'on_ft' : ['cmake']})
 	"}}}
-	"
+
 	" json {{{
 	Plug 'elzr/vim-json'
 	let g:vim_json_syntax_conceal = 0
+	" }}}
+	
+	" {{{ vim
+	"Shougo/neco-vim {{{
+	Plug 'Shougo/neco-vim', { 'for' : 'vim' }
+	"}}}
 	" }}}
 	"}}}
 
@@ -420,6 +445,7 @@ call plug#begin('~/.vim/plugged')
 
 	" 'vim-syntastic/syntastic' {{{
 	Plug 'vim-syntastic/syntastic', {'for' : 'asciidoc'}
+	let g:syntastic_auto_loc_list = 1
 
 	set statusline+=%#warningmsg#
 	set statusline+=%{SyntasticStatuslineFlag()}
