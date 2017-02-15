@@ -1,43 +1,43 @@
-snippet listing
-	${1:.Optional title}
+snippet listing-block
+	${1:#:.Optional title}
 	----
 	${0}
 	----
 
-snippet source
-	${1:.Optional title}
+snippet source-block
+	${1:#:.Optional title}
 	[source,${2:source language}]
 	----
 	${3:Source}
 	----
 
-snippet sidebar
-	${1:.Optional title}
+snippet sidebar-block
+	${1:#:.Optional title}
 	****
 	${0}
 	****
 
-snippet example
-	${1:.Optional title}
+snippet example-block
+	${1:#:.Optional title}
 	====
 	${0}
 	====
 
-snippet passthrough
-	${1:.Optional title}
+snippet passthrough-block
+	${1:#:.Optional title}
 	++++
 	${0}
 	++++
 
-snippet literal
-	${1:.Optional title}
+snippet literal-block
+	${1:#:.Optional title}
 	++++
 	${0}
 	++++
 
-snippet quote
-	${1:.Optional title}
-	[quote, ${2:Author}${3:,Source}]
+snippet quote-block
+	${1:#:.Optional title}
+	[quote${2:, Author}${3:, Source}]
 	____
 	${0}
 	____
@@ -50,4 +50,16 @@ snippet image-block
 
 snippet image-embedded
 	image:${1:image path}[{2:Alt text}]
+    
+snippet table
+	${1:#:.Optional title}
+	|====
+    ${2:#:|Header 1|Header 2}
 
+    ${3:#:|Row1Col1|Row1Col2}
+	|====
+
+snippet rowspan
+    .${0:span}+^.^
+snippet colspan
+    ${0:span}+
