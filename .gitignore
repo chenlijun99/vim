@@ -1,4 +1,4 @@
-.vim/*
-!.vim/after/*
-!.vim/autoload/*
-!.vim/snippets/*
+/.vim/*
+!/.vim/after
+!/.vim/autoload
+!/.vim/snippets
