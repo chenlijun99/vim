@@ -42,14 +42,19 @@ snippet quote-block
 	${0}
 	____
 
+snippet Q&A
+    [qanda]
+    ${1:Domanda}::
+        ${0:Risposta}
+
 snippet include
-	include::${1:file path}[]
+	include::${0:file path}[]
 
 snippet image-block
-	image::${1:image path}[{2:Alt text}]
+	image::${1:image path}[title="${0}"]
 
 snippet image-embedded
-	image:${1:image path}[{2:Alt text}]
+	image:${1:image path}[${0:Alt text}]
     
 snippet table
 	${1:#:.Optional title}
@@ -61,5 +66,37 @@ snippet table
 
 snippet rowspan
     .${0:span}+^.^
+
 snippet colspan
     ${0:span}+
+
+snippet cross-reference
+    <<${0:paragraphs}>>
+
+
+snippet definition
+    ${1:term}::
+    ${0:definition}
+
+snippet italic
+    _${0}_
+snippet bold
+    *${0}*
+
+snippet sub
+    ~${0}~
+
+snippet sup
+    ^${0}^
+
+snippet tip
+    TIP: ${0:Tip}
+
+snippet important
+    IMPORTANT: ${0:Message}
+
+snippet warning
+    WARNING: ${0:Warning}
+
+snippet caution
+    CAUTION: ${0:message}

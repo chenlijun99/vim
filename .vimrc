@@ -5,8 +5,9 @@
 " \______  /___|  /\___  >___|  /          /\ \_/ |__|__|_|  /__|    \___  >
 "        \/     \/     \/     \/           \/              \/            \/ 
 
+" enable vim features, which are not supported by vi
+set nocompatible
 
-set nocompatible				" to enable vim features, that vi doesn't support
 let mapleader=","
 
 " My mappings and commands {{{
@@ -23,45 +24,63 @@ vnoremap L g_
 " edit vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
 " edit ftplugin for current filetype
 nnoremap <leader>ef :execute printf("vsplit ~/.vim/after/ftplugin/%s.vim", &filetype)<cr>
 nnoremap <leader>sf :execute printf("source ~/.vim/after/ftplugin/%s.vim", &filetype)<cr>
+
 " edit snippets for current filetype
 nnoremap <leader>es :execute printf("vsplit ~/.vim/snippets/%s.snip", &filetype)<cr>
 nnoremap <leader>ss :execute printf("source ~/.vim/snippets/%s.snip", &filetype)<cr>
 
-nnoremap <silent> <CR> :noh<CR>	" disable the highlighting after a search
+" turn off the search highlight
+nnoremap <silent> <CR> :nohlsearch<CR>
 command! W :w !sudo tee %
 
 "}}}
 
 " Settings {{{
-set clipboard=unnamedplus	" set default clipboard as system clipboard
-set mouse=a					" enable the use of mouse for [a]ll the mode
+" set default clipboard as system clipboard
+set clipboard=unnamedplus
+" enable the use of mouse for [a]ll the mode
+set mouse=a
+" show a menu of possible completion, when pressing tab in command mode
 set wildmenu
-set wildmode=full			" show a menu when pressing tab in command mode and lists possible words (options, file, stuff like this...)
-set cursorline				" highlight the current line
-set number					" for each line print before its line number
+set wildmode=full
+" highlight the current line
+set cursorline
+" show line number
+set number
+" show the line number distance of each line relative to the current one
 set relativenumber
-set nowrap					" don't wrap even when a line is longer than the width of the window
+" don't wrap even when a line is longer than the width of the window
+set nowrap
+" show a vertical line at the 80th column
 set colorcolumn=80
+" show the completion as complete as possible
 set completeopt+=longest
+" do not use open a preview window of completion (it's laggy)
 set completeopt-=preview
 
 " search {{{
-set hlsearch	" enables the highlighting when searching
-set incsearch	" while typing a search shows where the pattern, as far as it has been typed, matches
+" highlight searched pattern
+set hlsearch
+" highlight searched pattern as it's typed
+set incsearch
 set ignorecase
-set smartcase	" when the search pattern contains uppercase chars, then do not ignore case
+" when the search pattern contains uppercase chars, then do not ignore case
+set smartcase
 "}}}
 
 " indent {{{
 set autoindent
 set tabstop=4
 set shiftwidth=4
+set noexpandtab
+set list listchars=tab:\▸\ 
 "}}}
 
-" colorscheme {{{
+" colorscheme & font {{{
 set t_Co=256
 colorscheme gruvbox
 set background=dark
@@ -92,11 +111,15 @@ call plug#begin('~/.vim/plugged')
 					\ '<denite:enter_mode:normal>',
 					\ 'noremap'
 					\)
+		highlight deniteMatchedChar term=standout cterm=bold ctermfg=167 gui=bold guifg=#fb4934
+		highlight deniteMatchedRange term=standout cterm=bold ctermfg=167 gui=bold guifg=#fb4934
+
 	endfunction
 
-	Plug 'Shougo/denite.nvim' , { 'on' : 'Denite' }
+	Plug 'Shougo/denite.nvim' , { 'on' : ['DeniteProjectDir',
+				\'Denite'] }
 	autocmd! User denite.nvim call SetupDenite()
-	nmap <c-p> :Denite buffer<cr>
+	nmap <c-p> :DeniteProjectDir buffer file_rec<cr>
 	"}}}
 	" {{{ Shougo/neocomplete
 	Plug 'Shougo/neocomplete'
@@ -215,7 +238,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'majutsushi/tagbar', { 'on' : 
 				\['TagbarToggle',
 				\'SidePanel tagbar',
-				\'TagbarOpen']}
+				\'TagbarOpen',
+				\'TagbarClose']}
 	let g:tagbar_left=1
 	" }}}
 
@@ -223,15 +247,19 @@ call plug#begin('~/.vim/plugged')
 	Plug 'scrooloose/nerdtree' , { 'on' :
 				\['NERDTreeToggle',
 				\'SidePanel nerdtree',
-				\'NERDTreeFind'] }
+				\'NERDTreeFind',
+				\'NERDTreeClose'] }
 	"let g:NERDTreeWinSize=20
-	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif	" close NERDTree if it's the last window
 	" }}}
 
 	" }}}
 	
 	"tpope/vim-fugitive {{{
 	Plug 'tpope/vim-fugitive'
+	"}}}
+	
+	"xuyuanp/nerdtree-git-plugin {{{
+	Plug 'xuyuanp/nerdtree-git-plugin'
 	"}}}
 
 	"tpope/vim-surround {{{
@@ -365,14 +393,22 @@ call plug#begin('~/.vim/plugged')
 	map m <Plug>(easymotion-prefix)
 	map mm ms
 	"}}}
+	
+	" 'airblade/vim-rooter' {{{
+	Plug 'airblade/vim-rooter'
+	let g:rooter_silent_chdir = 1
+	let g:rooter_change_directory_for_non_project_files = 'current'
+	" }}}
 	"}}}
 
 	" Language specific plugins {{{
 	" c++ {{{
 	" 'octol/vim-cpp-enhanced-highlight' {{{
 	Plug 'octol/vim-cpp-enhanced-highlight', { 'for' : 'cpp' }
-				"\{'on_ft' : ['cpp']})
 	let g:cpp_class_scope_highlight = 1
+	let g:cpp_member_variable_highlight = 1
+	let g:cpp_experimental_template_highlight = 1
+	let g:cpp_concepts_highlight = 1
 	" }}}
 
 	"'vim-scripts/OmniCppComplete' {{{
@@ -390,12 +426,21 @@ call plug#begin('~/.vim/plugged')
 	"}}}
 	"}}}
 
+	" java {{{
+	Plug 'artur-shaik/vim-javacomplete2'
+	" }}}
+	
 	"Web {{{
 	" javascript {{{
 	Plug 'pangloss/vim-javascript' , { 'for' : 'javascript' }
 	Plug 'othree/javascript-libraries-syntax.vim', { 'for' : 'javascript' }
 	" }}}
 	
+	"typescript {{{
+	Plug 'leafgarland/typescript-vim' , { 'for' : 'typescript' }
+	Plug 'Quramy/tsuquyomi' , { 'for' : 'typescript'}
+	"}}}
+
 	" css {{{
 	"
 	" }}}
@@ -405,7 +450,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'othree/html5.vim', { 'for' : 'html' }
 
 	Plug 'mattn/emmet-vim', { 'for' : 'html' }
-	let g:user_emmet_leader_key = '<space>'
+	let g:user_emmet_leader_key = ',e'
 
 	Plug 'alvan/vim-closetag', { 'for' : 'html' }
 	let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
@@ -417,6 +462,12 @@ call plug#begin('~/.vim/plugged')
 	" graphviz omnifunc
 	Plug 'wannesm/wmgraphviz.vim', { 'for' : 'dot' }
 				"\{'on_ft' : ['dot']})
+	" }}}
+
+	" R {{{
+	"jalvesaq/Nvim-R {{{
+	Plug 'jalvesaq/Nvim-R', { 'for' : 'rout'} 
+	"}}}
 	" }}}
 
 	" latex {{{
@@ -445,7 +496,7 @@ call plug#begin('~/.vim/plugged')
 
 	" 'vim-syntastic/syntastic' {{{
 	Plug 'vim-syntastic/syntastic', {'for' : 'asciidoc'}
-	let g:syntastic_auto_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
 
 	set statusline+=%#warningmsg#
 	set statusline+=%{SyntasticStatuslineFlag()}
@@ -454,6 +505,7 @@ call plug#begin('~/.vim/plugged')
 
 	"w0rp/ale {{{
 	Plug 'w0rp/ale'
+	let g:ale_set_loclist=1
 	let g:ale_sign_column_always=1
 	let g:ale_lint_on_text_changed=0
 	let g:ale_lint_on_enter=0
@@ -468,30 +520,11 @@ syntax on						" enables syntax highlighting
 " }}}
 
 " Buffer and window {{{
-"
 set hidden
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-left> <c-w>h
-nnoremap <c-right> <c-w>l
-nnoremap <c-up> <c-w>k
-nnoremap <c-down> <c-w>j
-
-"nnoremap <c-s-left> <c-w><
-"nnoremap <c-s-right> <c-w>>
-"nnoremap <c-s-up> <c-w>+
-"nnoremap <c-s-down> <c-w>-
-
-" A plugin that adds a window mode to vim
 "}}}
 
 " Folding {{{
 
-" This plugin prevents vim from recompute for folding too early and too often,
-" which can slown down vim noticeably when in insert-mode (if the file is very
-" long)
 set foldenable	" enable folding
 set foldmethod=syntax
 set foldcolumn=1
