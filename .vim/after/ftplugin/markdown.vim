@@ -1,4 +1,4 @@
-nnoremap <buffer> <silent> <leader>r :!chromium-browser % &<cr>
+nnoremap <buffer> <silent> <leader>r :!chromium-browser % > /dev/null &<cr>
 
 " toggle spell-checking
 nnoremap <buffer> <leader>c :setl spell!<cr>

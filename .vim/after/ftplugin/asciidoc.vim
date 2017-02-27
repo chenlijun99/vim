@@ -1,12 +1,12 @@
-nnoremap <buffer> <silent> <leader>r :!chromium-browser % &<cr>
+nnoremap <buffer> <silent> <leader>r :!chromium-browser % > /dev/null &<cr>
 
 function! Build()
 	if filereadable("./Makefile")
 		make
-		execute("!chromium-browser *.html &")
+		execute("!chromium-browser *.html > /dev/null &")
 	else
 		execute("!asciidoctor % &")
-		execute("!chromium-browser %:r.html &")
+		execute("!chromium-browser %:r.html /dev/null &")
 	endif
 endfunction
 
