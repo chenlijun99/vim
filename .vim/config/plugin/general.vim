@@ -119,7 +119,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "endif
 " }}}
 
-" Sidebars {{{
+" Sidepanel {{{
 
 " sidepanel will handle the underlying plugin
 " 'miyakogi/sidepanel.vim' {{{
@@ -130,8 +130,37 @@ let g:sidepanel_width = 20
 let g:sidepanel_use_rabbit_ui = 1
 " Activate plugins in SidePanel
 let g:sidepanel_config = {}
-let g:sidepanel_config['tagbar'] = {}
-let g:sidepanel_config['nerdtree'] = {}
+let g:sidepanel_config['nerdtree'] = {
+			\  'filetype': 'nerdtree',
+			\  'open': ['NERDTree'],
+			\  'close': ['NERDTreeClose'],
+			\  'position': {
+			\    'var': 'g:NERDTreeWinPos',
+			\    'param': {
+			\      'left': 'left',
+			\      'right': 'right',
+			\    },
+			\  },
+			\  'size': {
+			\    'var': 'g:NERDTreeWinSize',
+			\  },
+			\}
+let g:sidepanel_config['tagbar'] = {
+			\  'bufname': '__Tagbar__',
+			\  'filetype': 'tagbar',
+			\  'open': ['TagbarOpen'],
+			\  'close': ['TagbarClose'],
+			\  'position': {
+			\    'var': 'g:tagbar_left',
+			\    'param': {
+			\      'left': 1,
+			\      'right': 0,
+			\    },
+			\  },
+			\  'size': {
+			\    'var': 'g:tagbar_width',
+			\  },
+			\}
 
 nnoremap so :SidePanel tagbar<cr>
 nnoremap sf :SidePanel nerdtree<cr>
@@ -149,11 +178,11 @@ let g:tagbar_left=1
 
 " 'scrooloose/nerdtree' {{{
 Plug 'scrooloose/nerdtree' , { 'on' :
-			\['NERDTreeToggle',
+			\['NERDTree',
+			\'NERDTreeToggle',
 			\'SidePanel nerdtree',
 			\'NERDTreeFind',
 			\'NERDTreeClose'] }
-"let g:NERDTreeWinSize=20
 " }}}
 
 " }}}
@@ -304,6 +333,33 @@ let g:rooter_silent_chdir = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_resolve_links = 1
 " }}}
+
+"'KabbAmine/zeavim.vim' {{{
+Plug 'KabbAmine/zeavim.vim', {'on': [
+            \   'Zeavim', 'Docset',
+            \   '<Plug>Zeavim',
+            \   '<Plug>ZVVisSelection',
+            \   '<Plug>ZVKeyDocset',
+            \   '<Plug>ZVMotion'
+            \ ]}
+
+nnoremap K :Zeavim<cr>
+vnoremap K :Zeavim<cr>
+nnoremap <leader>k :Zeavim!<cr><cr>
+nnoremap <leader>K :Zeavim!<cr><c-w>
+
+let g:zv_disable_mapping = 1
+let g:zv_file_types = {
+			\ 'cpp'				:	'cpp,qt',
+			\ 'cmake'			:	'cmake',
+			\ '(plain|tex)?tex'	:	'latex',
+			\ 'html'			:	'html',
+			\ 'css'				:	'css',
+			\ 'javascript'		:	'javascript'
+			\}
+
+let g:zv_get_docset_by = ['ft', 'ext']
+"}}}
 
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
