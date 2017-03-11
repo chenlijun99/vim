@@ -17,6 +17,7 @@ call SourcePlugins(sourcePluginsFilesDir, "general")
 call SourcePlugins(sourcePluginsFilesDir, "syntax_checkers")
 " Language specific plugins {{{
 call SourcePlugins(sourcePluginsFilesDir, "cpp")
+call SourcePlugins(sourcePluginsFilesDir, "java")
 call SourcePlugins(sourcePluginsFilesDir, "web_development")
 call SourcePlugins(sourcePluginsFilesDir, "json")
 call SourcePlugins(sourcePluginsFilesDir, "dot")
