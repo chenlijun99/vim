@@ -18,6 +18,10 @@ let OmniCpp_MayCompleteScope = 1  	" autocomplete after ::
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 let OmniCpp_LocalSearchDecl = 1  	" use local search function, bracket on 1st column
 "}}}
+
+" qmake {{{
+Plug 'artoj/qmake-syntax-vim' , { 'for' : 'cpp' }
+" }}}
 "
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
