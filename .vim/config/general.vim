@@ -1,6 +1,9 @@
 " enable vim features, which are not supported by vi
 set nocompatible
 
+" set backspace behavior as we would normally expect
+set backspace=indent,eol,start
+
 " set default clipboard as system clipboard
 set clipboard=unnamedplus
 
