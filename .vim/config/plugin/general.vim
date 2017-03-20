@@ -187,7 +187,7 @@ Plug 'scrooloose/nerdtree' , { 'on' :
 " }}}
 
 " }}}
-
+Plug 'vim-scripts/fcitx.vim'
 " Valloric/YouCompleteMe {{{
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
 			\ 'for' : ['cpp','c','javascript']}

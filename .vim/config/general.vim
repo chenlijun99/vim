@@ -38,6 +38,8 @@ set completeopt-=preview
 " don't close buffer when it's abandoned, just leave it hidden
 set hidden
 
+set timeoutlen=500
+
 " Search {{{
 " highlight searched pattern
 set hlsearch
