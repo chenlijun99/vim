@@ -187,7 +187,7 @@ Plug 'scrooloose/nerdtree' , { 'on' :
 " }}}
 
 " }}}
-Plug 'vim-scripts/fcitx.vim'
+
 " Valloric/YouCompleteMe {{{
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
 			\ 'for' : ['cpp','c','javascript']}
@@ -196,23 +196,20 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 "bkad/CamelCaseMotion {{{
 Plug 'bkad/CamelCaseMotion'
-function! g:SetupCamelCaseMotion()
-	map <silent> w <Plug>CamelCaseMotion_w
-	map <silent> b <Plug>CamelCaseMotion_b
-	map <silent> e <Plug>CamelCaseMotion_e
-	map <silent> ge <Plug>CamelCaseMotion_ge
-	sunmap w
-	sunmap b
-	sunmap e
-	sunmap ge
-	omap <silent> iw <Plug>CamelCaseMotion_iw
-	xmap <silent> iw <Plug>CamelCaseMotion_iw
-	omap <silent> ib <Plug>CamelCaseMotion_ib
-	xmap <silent> ib <Plug>CamelCaseMotion_ib
-	omap <silent> ie <Plug>CamelCaseMotion_ie
-	xmap <silent> ie <Plug>CamelCaseMotion_ie
-endfunction
-
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
+omap <silent> iw <Plug>CamelCaseMotion_iw
+xmap <silent> iw <Plug>CamelCaseMotion_iw
+omap <silent> ib <Plug>CamelCaseMotion_ib
+xmap <silent> ib <Plug>CamelCaseMotion_ib
+omap <silent> ie <Plug>CamelCaseMotion_ie
+xmap <silent> ie <Plug>CamelCaseMotion_ie
 "}}}
 
 "tpope/vim-fugitive {{{
@@ -388,6 +385,10 @@ let g:zv_file_types = {
 
 let g:zv_get_docset_by = ['ft', 'ext']
 "}}}
+
+" {{{ 'vim-scripts/fcitx.vim'
+Plug 'vim-scripts/fcitx.vim'
+" }}}
 
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
