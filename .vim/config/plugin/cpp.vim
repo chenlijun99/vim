@@ -20,7 +20,7 @@ let OmniCpp_LocalSearchDecl = 1  	" use local search function, bracket on 1st co
 "}}}
 
 " qmake {{{
-Plug 'artoj/qmake-syntax-vim' , { 'for' : 'cpp' }
+Plug 'artoj/qmake-syntax-vim' , { 'for' : 'qmake'}
 " }}}
 "
 " set modeline 
