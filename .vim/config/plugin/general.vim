@@ -28,6 +28,7 @@ nmap <c-p> :DeniteProjectDir buffer file_rec<cr>
 "}}}
 " {{{ Shougo/neocomplete
 Plug 'Shougo/neocomplete'
+
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 let g:neocomplete#use_vimproc = 1
 " Disable AutoComplPop.
@@ -190,7 +191,14 @@ Plug 'scrooloose/nerdtree' , { 'on' :
 
 " Valloric/YouCompleteMe {{{
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
-			\ 'for' : ['cpp','c','javascript']}
+			\ 'on': []}
+augroup load_ycm
+	autocmd!
+	autocmd! FileType c,cpp,javascript
+				\ autocmd! InsertEnter * call plug#load('YouCompleteMe') 
+				\ | autocmd! load_ycm
+augroup END
+
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'  
 " }}}
 
