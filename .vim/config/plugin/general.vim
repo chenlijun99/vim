@@ -195,7 +195,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
 augroup load_ycm
 	autocmd!
 	autocmd! FileType c,cpp,javascript
-				\ autocmd! InsertEnter * call plug#load('YouCompleteMe') 
+				\ autocmd! BufEnter * call plug#load('YouCompleteMe') 
 				\ | autocmd! load_ycm
 augroup END
 
