@@ -20,6 +20,14 @@ vnoremap L g_
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" edit general settings
+nnoremap <leader>eV vsplit ~/.vim/config/general.vim<cr>
+nnoremap <leader>sV source ~/.vim/config/general.vim<cr>
+
+" edit keymapping
+nnoremap <leader>ek :vsplit ~/.vim/config/keymapping.vim<cr>
+nnoremap <leader>sk :source ~/.vim/config/keymapping.vim<cr>
+
 " edit ftplugin for current filetype
 nnoremap <leader>ef :execute printf("vsplit ~/.vim/after/ftplugin/%s.vim", &filetype)<cr>
 nnoremap <leader>sf :execute printf("source ~/.vim/after/ftplugin/%s.vim", &filetype)<cr>

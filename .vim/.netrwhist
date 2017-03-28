@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/home/chen/Dropbox/Documents/Miscellaneous/餐馆阿姨/2017/src'
 let g:netrw_dirhist_2='/home/chen/Repositories/vim/.vim/config/plugin/web_development'
 let g:netrw_dirhist_3='/home/chen/Repositories/vim/.vim/config/plugin'
+let g:netrw_dirhist_4='/home/chen/Repositories/vim/.vim/bundle/denite.nvim/autoload/denite'
+let g:netrw_dirhist_5='/home/chen/Repositories/vim/.vim'

@@ -224,7 +224,9 @@ xmap <silent> ie <Plug>CamelCaseMotion_ie
 Plug 'tpope/vim-fugitive'
 "}}}
 
+" airblade/vim-gitgutter {{{
 Plug 'airblade/vim-gitgutter'
+" }}}
 
 "xuyuanp/nerdtree-git-plugin {{{
 Plug 'xuyuanp/nerdtree-git-plugin'
