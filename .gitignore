@@ -1,4 +1,4 @@
-/.vim/bundle
+/.vim/bundle/*
 
 # ignore vim swap files
 *.swp
