@@ -21,8 +21,8 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " edit general settings
-nnoremap <leader>eV vsplit ~/.vim/config/general.vim<cr>
-nnoremap <leader>sV source ~/.vim/config/general.vim<cr>
+nnoremap <leader>eV :vsplit ~/.vim/config/general.vim<cr>
+nnoremap <leader>sV :source ~/.vim/config/general.vim<cr>
 
 " edit keymapping
 nnoremap <leader>ek :vsplit ~/.vim/config/keymapping.vim<cr>
