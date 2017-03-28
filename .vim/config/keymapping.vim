@@ -28,6 +28,12 @@ nnoremap <leader>sf :execute printf("source ~/.vim/after/ftplugin/%s.vim", &file
 nnoremap <leader>es :execute printf("vsplit ~/.vim/snippets/%s.snip", &filetype)<cr>
 nnoremap <leader>ss :execute printf("source ~/.vim/snippets/%s.snip", &filetype)<cr>
 
+" edit plugins
+nnoremap <leader>eP :execute printf("vsplit %s/%s.vim",g:sourcePluginsFilesDir, 'general')<cr>
+nnoremap <leader>sP :execute printf("vsplit %s/%s.vim",g:sourcePluginsFilesDir, 'general')<cr>
+nnoremap <leader>ep :execute printf("vsplit %s/%s.vim",g:sourcePluginsFilesDir, &filetype)<cr>
+nnoremap <leader>sp :execute printf("source %s/%s.vim",g:sourcePluginsFilesDir, &filetype)<cr>
+
 " turn off the search highlight
 nnoremap <silent> <CR> :nohlsearch<CR>
 command! W :w !sudo tee %

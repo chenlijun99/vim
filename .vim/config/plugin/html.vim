@@ -5,3 +5,5 @@ let g:user_emmet_leader_key = ',e'
 
 Plug 'alvan/vim-closetag', { 'for' : 'html' }
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
+
+Plug 'gregsexton/MatchTag' , { 'for' : 'html' }
