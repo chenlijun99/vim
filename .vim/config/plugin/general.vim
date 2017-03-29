@@ -27,7 +27,13 @@ autocmd! User denite.nvim call SetupDenite()
 nmap <c-p> :DeniteProjectDir buffer file_rec<cr>
 "}}}
 " {{{ Shougo/neocomplete
-Plug 'Shougo/neocomplete'
+Plug 'Shougo/neocomplete' , { 'on' : [] }
+augroup load_neocomplete
+	autocmd!
+	autocmd InsertEnter * call plug#load('neocomplete') 
+				\ | autocmd! load_neocomplete
+augroup END
+autocmd! User neocomplete call neocomplete#init#enable()
 
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 let g:neocomplete#use_vimproc = 1
@@ -96,7 +102,14 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " }}}
 " {{{ Shougo/neosnippet
-Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet' , { 'on' : [] }
+augroup load_neosnippet
+	autocmd!
+	autocmd InsertEnter * call plug#load('neosnippet') 
+				\ | autocmd! load_neosnippet
+augroup END
+
+autocmd! User neocomplete call neocomplete#init#enable()
 Plug 'Shougo/neosnippet-snippets'
 let g:neosnippet#snippets_directory = ['~/.vim/snippets/']
 " Plugin key-mappings.
@@ -122,11 +135,14 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " }}}
 
 " Sidepanel {{{
-
 " sidepanel will handle the underlying plugin
 " 'miyakogi/sidepanel.vim' {{{
-Plug 'miyakogi/sidepanel.vim'
-
+Plug 'miyakogi/sidepanel.vim' , { 'on' : [] }
+augroup load_sidepanel
+	autocmd!
+	autocmd BufEnter * call plug#load('sidepanel.vim') 
+				\ | autocmd! load_sidepanel
+augroup END
 let g:sidepanel_pos = "left"
 let g:sidepanel_width = 20
 let g:sidepanel_use_rabbit_ui = 1
@@ -185,6 +201,15 @@ Plug 'scrooloose/nerdtree' , { 'on' :
 			\'SidePanel nerdtree',
 			\'NERDTreeFind',
 			\'NERDTreeClose'] }
+
+"xuyuanp/nerdtree-git-plugin {{{
+Plug 'xuyuanp/nerdtree-git-plugin' , { 'on' :
+			\['NERDTree',
+			\'NERDTreeToggle',
+			\'SidePanel nerdtree',
+			\'NERDTreeFind',
+			\'NERDTreeClose'] }
+"}}}
 " }}}
 
 " }}}
@@ -194,8 +219,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
 			\ 'on': []}
 augroup load_ycm
 	autocmd!
-	autocmd! FileType c,cpp,javascript
-				\ autocmd! BufEnter * call plug#load('YouCompleteMe') 
+	autocmd FileType c,cpp,javascript
+				\ autocmd BufEnter * call plug#load('YouCompleteMe') 
 				\ | autocmd! load_ycm
 augroup END
 
@@ -221,28 +246,45 @@ xmap <silent> ie <Plug>CamelCaseMotion_ie
 "}}}
 
 "tpope/vim-fugitive {{{
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' , { 'on' : [] }
+augroup load_fugitive
+	autocmd!
+	autocmd TextChanged,TextChangedI * call plug#load('vim-fugitive') 
+				\ | autocmd! load_fugitive
+augroup END
+autocmd! User vim-fugitive call fugitive#detect(expand('%:p'))
 "}}}
 
 " airblade/vim-gitgutter {{{
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter' , { 'on' : [] }
+augroup load_vim-gitgutter
+	autocmd!
+	autocmd TextChanged,TextChangedI * call plug#load('vim-gitgutter') 
+				\ | autocmd! load_vim-gitgutter
+augroup END
 " }}}
 
-"xuyuanp/nerdtree-git-plugin {{{
-Plug 'xuyuanp/nerdtree-git-plugin'
-"}}}
-
 "tpope/vim-surround {{{
-Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround',
+      \ { 'on': ['<Plug>Dsurround', '<Plug>Csurround', '<Plug>CSurround',
+      \ '<Plug>Ysurround',  '<Plug>YSurround', '<Plug>Yssurround',
+      \ '<Plug>YSsurround', '<Plug>VSurround', '<Plug>VgSurround'] }
+xmap S <Plug>VSurround
 "}}}
 
 " 'ervandew/supertab' {{{
-Plug 'ervandew/supertab'
+Plug 'ervandew/supertab' , { 'on' : [] }
 let g:SuperTabDefaultCompletionType = "<c-n>"
+augroup load_supertab
+	autocmd!
+	autocmd InsertEnter * call plug#load('supertab') 
+				\ | autocmd! load_supertab
+augroup END
 " }}}
 
 " 'scrooloose/nerdcommenter' {{{
-Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter' , { 'on' : '<Plug>NERDCommenterToggle' }
+nmap <leader>c<space> <Plug>NERDCommenterToggle
 "}}}
 
 " 'bling/vim-bufferline' {{{
@@ -252,7 +294,7 @@ let g:bufferline_active_buffer_left = '['
 " }}}
 
 " 'Valloric/ListToggle' {{{
-Plug 'Valloric/ListToggle'
+Plug 'Valloric/ListToggle' , { 'on' : ['QToggle','LToggle'] }
 let g:lt_height=10	" set location list height
 
 "" toggle location list and go back to the previous window
@@ -262,16 +304,12 @@ nnoremap <leader>k :lprevious<cr>
 "}}}
 
 " istib/vifm.vim {{{
-Plug 'istib/vifm.vim'
+Plug 'istib/vifm.vim' , { 'on' : 'EditVifm' }
 nnoremap <leader>o :EditVifm<cr>
 " }}}
 
 " 'terryma/vim-multiple-cursors' {{{
-Plug 'terryma/vim-multiple-cursors'
-" }}}
-
-" 'embear/vim-localvimrc' {{{
-Plug 'embear/vim-localvimrc'
+Plug 'terryma/vim-multiple-cursors' , { 'on' : 'MultipleCursorsFind' }
 " }}}
 
 " 'romgrk/winteract.vim' {{{
@@ -353,11 +391,17 @@ Plug 'Konfekt/FastFold'
 " }}}
 
 "'jiangmiao/auto-pairs' {{{
-Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs' , { 'on' : [] }
+augroup load_auto-pairs
+	autocmd!
+	autocmd InsertEnter * call plug#load('auto-pairs') 
+				\ | autocmd! load_auto-pairs
+augroup END
+autocmd! User auto-pairs call AutoPairsInit()
 "}}}
 
 "'easymotion/vim-easymotion' {{{
-Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion' , { 'on' : '<Plug>(easymotion-prefix)' }
 
 " m for move
 map m <Plug>(easymotion-prefix)
@@ -399,7 +443,12 @@ let g:zv_get_docset_by = ['ft', 'ext']
 "}}}
 
 " {{{ 'vim-scripts/fcitx.vim'
-Plug 'vim-scripts/fcitx.vim'
+Plug 'vim-scripts/fcitx.vim' , { 'on' : [] }
+augroup load_fcitx
+	autocmd!
+	autocmd InsertEnter * call plug#load('fcitx.vim') 
+				\ | autocmd! load_fcitx
+augroup END
 " }}}
 
 " set modeline 
