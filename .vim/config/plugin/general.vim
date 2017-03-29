@@ -134,7 +134,7 @@ let g:sidepanel_use_rabbit_ui = 1
 let g:sidepanel_config = {}
 let g:sidepanel_config['nerdtree'] = {
 			\  'filetype': 'nerdtree',
-			\  'open': ['NERDTree'],
+			\  'open': ['NERDTreeFind'],
 			\  'close': ['NERDTreeClose'],
 			\  'position': {
 			\    'var': 'g:NERDTreeWinPos',
