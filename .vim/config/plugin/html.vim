@@ -10,3 +10,5 @@ Plug 'alvan/vim-closetag' , { 'for' : 'html',
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
 
 Plug 'gregsexton/MatchTag' , { 'for' : 'html' }
+
+Plug 'chrisgillis/vim-bootstrap3-snippets/', { 'for' : 'html' }
