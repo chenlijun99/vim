@@ -73,7 +73,8 @@ set guifont=DejaVu\ Sans\ Mono\ 12
 set foldenable
 set foldmethod=syntax
 set foldcolumn=1
-set foldlevelstart=1
+" when enter in a buffer, no folds are closed
+set foldlevelstart=99
 set foldnestmax=1
 "}}}
 
