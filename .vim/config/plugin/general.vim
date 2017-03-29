@@ -2,9 +2,6 @@
 "Shougo/vimproc.vim {{{
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 "}}}
-"Shougo/neopairs.vim {{{
-Plug 'Shougo/neopairs.vim'
-"}}}
 "Shougo/echodoc.vim {{{
 Plug 'Shougo/echodoc.vim'
 "}}}
