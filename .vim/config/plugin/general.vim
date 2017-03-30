@@ -282,6 +282,7 @@ augroup END
 " 'scrooloose/nerdcommenter' {{{
 Plug 'scrooloose/nerdcommenter' , { 'on' : '<Plug>NERDCommenterToggle' }
 nmap <leader>c<space> <Plug>NERDCommenterToggle
+vmap <leader>c<space> <Plug>NERDCommenterToggle
 "}}}
 
 " 'bling/vim-bufferline' {{{
