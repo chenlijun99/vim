@@ -8,6 +8,7 @@
 source ~/.vim/config/general.vim
 source ~/.vim/config/keymapping.vim
 source ~/.vim/config/plugin.vim
+source ~/.vim/config/autocmd.vim
 source ~/.vim/config/statusline.vim
 
 " set modeline 
