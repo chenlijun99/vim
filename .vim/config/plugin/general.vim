@@ -189,6 +189,13 @@ Plug 'majutsushi/tagbar', { 'on' :
 			\'TagbarOpen',
 			\'TagbarClose']}
 let g:tagbar_left=1
+Plug 'mtscout6/vim-tagbar-css' , { 'on' : [] }
+augroup load_tagbar_css
+	autocmd!
+	autocmd FileType css
+				\ autocmd User tagbar call plug#load('vim-tagbar-css')
+				\ | autocmd! load_tagbar_css
+augroup END
 " }}}
 
 " 'scrooloose/nerdtree' {{{
@@ -411,6 +418,8 @@ Plug 'airblade/vim-rooter'
 let g:rooter_silent_chdir = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_resolve_links = 1
+let g:rooter_patterns = ['package.json', '.git/', '.git']
+
 " }}}
 
 "'KabbAmine/zeavim.vim' {{{
@@ -448,6 +457,8 @@ augroup load_fcitx
 				\ | autocmd! load_fcitx
 augroup END
 " }}}
+
+Plug 'Chiel92/vim-autoformat' , { 'on' : 'Autoformat' }
 
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
