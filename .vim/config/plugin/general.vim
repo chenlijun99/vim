@@ -132,55 +132,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " }}}
 
 " Sidepanel {{{
-" sidepanel will handle the underlying plugin
-" 'miyakogi/sidepanel.vim' {{{
-Plug 'miyakogi/sidepanel.vim' , { 'on' : [] }
-augroup load_sidepanel
-	autocmd!
-	autocmd BufEnter * call plug#load('sidepanel.vim') 
-				\ | autocmd! load_sidepanel
-augroup END
-let g:sidepanel_pos = "left"
-let g:sidepanel_width = 20
-let g:sidepanel_use_rabbit_ui = 1
-" Activate plugins in SidePanel
-let g:sidepanel_config = {}
-let g:sidepanel_config['nerdtree'] = {
-			\  'filetype': 'nerdtree',
-			\  'open': ['NERDTreeFind'],
-			\  'close': ['NERDTreeClose'],
-			\  'position': {
-			\    'var': 'g:NERDTreeWinPos',
-			\    'param': {
-			\      'left': 'left',
-			\      'right': 'right',
-			\    },
-			\  },
-			\  'size': {
-			\    'var': 'g:NERDTreeWinSize',
-			\  },
-			\}
-let g:sidepanel_config['tagbar'] = {
-			\  'bufname': '__Tagbar__',
-			\  'filetype': 'tagbar',
-			\  'open': ['TagbarOpen'],
-			\  'close': ['TagbarClose'],
-			\  'position': {
-			\    'var': 'g:tagbar_left',
-			\    'param': {
-			\      'left': 1,
-			\      'right': 0,
-			\    },
-			\  },
-			\  'size': {
-			\    'var': 'g:tagbar_width',
-			\  },
-			\}
-
-nnoremap so :SidePanel tagbar<cr>
-nnoremap sf :SidePanel nerdtree<cr>
-nnoremap S :SidePanelClose<cr>
-"}}}
 
 " 'majutsushi/tagbar' {{{
 Plug 'majutsushi/tagbar', { 'on' : 
@@ -188,7 +139,8 @@ Plug 'majutsushi/tagbar', { 'on' :
 			\'SidePanel tagbar',
 			\'TagbarOpen',
 			\'TagbarClose']}
-let g:tagbar_left=1
+let g:tagbar_left=0
+let g:tagbar_width=20
 Plug 'mtscout6/vim-tagbar-css' , { 'on' : [] }
 augroup load_tagbar_css
 	autocmd!
@@ -205,6 +157,7 @@ Plug 'scrooloose/nerdtree' , { 'on' :
 			\'SidePanel nerdtree',
 			\'NERDTreeFind',
 			\'NERDTreeClose'] }
+let g:NERDTreeWinSize=20
 
 "xuyuanp/nerdtree-git-plugin {{{
 Plug 'xuyuanp/nerdtree-git-plugin' , { 'on' :
@@ -215,7 +168,10 @@ Plug 'xuyuanp/nerdtree-git-plugin' , { 'on' :
 			\'NERDTreeClose'] }
 "}}}
 " }}}
-
+"
+nnoremap so :TagbarToggle<cr>
+nnoremap sf :NERDTreeFind<cr>
+nnoremap S :TagbarClose<cr>:NERDTreeClose<cr>
 " }}}
 
 " Valloric/YouCompleteMe {{{
@@ -288,13 +244,13 @@ xmap S <Plug>VSurround
 "}}}
 
 " 'ervandew/supertab' {{{
-Plug 'ervandew/supertab' , { 'on' : [] }
-let g:SuperTabDefaultCompletionType = "<c-n>"
-augroup load_supertab
-	autocmd!
-	autocmd InsertEnter * call plug#load('supertab') 
-				\ | autocmd! load_supertab
-augroup END
+"Plug 'ervandew/supertab' , { 'on' : [] }
+"let g:SuperTabDefaultCompletionType = "<c-n>"
+"augroup load_supertab
+	"autocmd!
+	"autocmd InsertEnter * call plug#load('supertab') 
+				"\ | autocmd! load_supertab
+"augroup END
 " }}}
 
 " 'scrooloose/nerdcommenter' {{{
