@@ -232,21 +232,32 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 " }}}
 
 "bkad/CamelCaseMotion {{{
-Plug 'bkad/CamelCaseMotion'
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-map <silent> ge <Plug>CamelCaseMotion_ge
-sunmap w
-sunmap b
-sunmap e
-sunmap ge
-omap <silent> iw <Plug>CamelCaseMotion_iw
-xmap <silent> iw <Plug>CamelCaseMotion_iw
-omap <silent> ib <Plug>CamelCaseMotion_ib
-xmap <silent> ib <Plug>CamelCaseMotion_ib
-omap <silent> ie <Plug>CamelCaseMotion_ie
-xmap <silent> ie <Plug>CamelCaseMotion_ie
+Plug 'bkad/CamelCaseMotion' , { 'on' : [] }
+
+function! s:MapCamelCaseMotion()
+	map <silent> w <Plug>CamelCaseMotion_w
+	map <silent> b <Plug>CamelCaseMotion_b
+	map <silent> e <Plug>CamelCaseMotion_e
+	map <silent> ge <Plug>CamelCaseMotion_ge
+	sunmap w
+	sunmap b
+	sunmap e
+	sunmap ge
+	omap <silent> iw <Plug>CamelCaseMotion_iw
+	xmap <silent> iw <Plug>CamelCaseMotion_iw
+	omap <silent> ib <Plug>CamelCaseMotion_ib
+	xmap <silent> ib <Plug>CamelCaseMotion_ib
+	omap <silent> ie <Plug>CamelCaseMotion_ie
+	xmap <silent> ie <Plug>CamelCaseMotion_ie
+endfunction
+
+augroup load_camelcasemotion
+	autocmd!
+	autocmd FileType cpp,java,javascript
+				\ autocmd BufEnter * call plug#load('CamelCaseMotion')
+				\ | call s:MapCamelCaseMotion()
+				\ | autocmd! load_camelcasemotion
+augroup END
 "}}}
 
 "tpope/vim-fugitive {{{
@@ -419,6 +430,7 @@ let g:rooter_silent_chdir = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_resolve_links = 1
 let g:rooter_patterns = ['package.json', '.git/', '.git']
+let g:rooter_targets="*.cpp,*.cxx,*.c,*.hxx,*.hpp,*.java,*.adoc,*.md,*.dot,*.js"
 
 " }}}
 
@@ -441,7 +453,7 @@ let g:zv_file_types = {
 			\ 'cpp'				:	'cpp,qt',
 			\ 'cmake'			:	'cmake',
 			\ '(plain|tex)?tex'	:	'latex',
-			\ 'html'			:	'html',
+			\ 'html'			:	'html,bootstrap',
 			\ 'css'				:	'css',
 			\ 'javascript'		:	'javascript'
 			\}

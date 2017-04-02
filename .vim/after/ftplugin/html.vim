@@ -4,5 +4,6 @@ setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal foldmethod=indent
 setlocal foldnestmax=10
+setlocal nolist
 
-nnoremap <buffer> <silent> <leader>r :!chromium-browser % > /dev/null &<cr>
+nnoremap <buffer> <leader>r :silent !chromium-browser % > /dev/null &<cr><c-l>
