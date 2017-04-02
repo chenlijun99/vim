@@ -9,6 +9,10 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
+" when jumping always put cursor at center of screen
+nnoremap <c-d> <c-d>zz
+nnoremap <c-u> <c-u>zz
+
 " H jump to start-of-line
 " L jump to end-of-line
 nnoremap H ^
