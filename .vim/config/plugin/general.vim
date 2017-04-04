@@ -179,7 +179,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
 			\ 'on': []}
 augroup load_ycm
 	autocmd!
-	autocmd FileType c,cpp,javascript
+	autocmd FileType c,cpp
 				\ autocmd BufEnter * call plug#load('YouCompleteMe') 
 				\ | autocmd! load_ycm
 augroup END
@@ -426,7 +426,9 @@ augroup load_fcitx
 augroup END
 " }}}
 
+" Chiel92/vim-autoformat {{{
 Plug 'Chiel92/vim-autoformat' , { 'on' : 'Autoformat' }
+" }}}
 
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
