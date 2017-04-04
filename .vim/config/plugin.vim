@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/bundle')
 
-" the directory which contains files responsible of plugin initialization
+" directory which contains files responsible of plugin inclusion and setup
 let g:sourcePluginsFilesDir = expand("$HOME") . "/.vim/config/plugin/"
 
 " source file responsible of plugin initialization (with Plug 'xxx')
@@ -19,6 +19,7 @@ call SourcePlugins(sourcePluginsFilesDir, "syntax_checkers")
 " Language specific plugins {{{
 call SourcePlugins(sourcePluginsFilesDir, "cpp")
 call SourcePlugins(sourcePluginsFilesDir, "java")
+call SourcePlugins(sourcePluginsFilesDir, "web_development")
 call SourcePlugins(sourcePluginsFilesDir, "javascript")
 call SourcePlugins(sourcePluginsFilesDir, "html")
 call SourcePlugins(sourcePluginsFilesDir, "css")
