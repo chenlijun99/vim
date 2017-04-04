@@ -70,6 +70,7 @@ function! s:my_cr_function()
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
@@ -429,6 +430,16 @@ augroup END
 " Chiel92/vim-autoformat {{{
 Plug 'Chiel92/vim-autoformat' , { 'on' : 'Autoformat' }
 " }}}
+"
+"vim-scripts/SyntaxComplete {{{
+Plug 'vim-scripts/SyntaxComplete'
 
+augroup load_syntaxcomplete
+	autocmd!
+	autocmd InsertEnter * call plug#load('SyntaxComplete') 
+				\ | set completefunc=syntaxcomplete#Complete
+				\ | autocmd! load_syntaxcomplete
+augroup END
+"}}}
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
