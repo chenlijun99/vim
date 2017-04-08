@@ -35,6 +35,9 @@ set completeopt+=longest
 " do not use open a preview window of completion (it's laggy)
 set completeopt-=preview
 
+" do not automatically select to first item
+set completeopt+=noselect
+
 " don't close buffer when it's abandoned, just leave it hidden
 set hidden
 
