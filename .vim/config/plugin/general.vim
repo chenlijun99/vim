@@ -267,10 +267,15 @@ let g:bufferline_active_buffer_left = '['
 " }}}
 
 " 'Valloric/ListToggle' {{{
-Plug 'Valloric/ListToggle' , { 'on' : ['QToggle','LToggle'] }
+Plug 'Valloric/ListToggle' , { 'on' : [] }
 let g:lt_height=10	" set location list height
 
-"" toggle location list and go back to the previous window
+augroup load_listToggle
+	autocmd!
+	autocmd BufWrite * call plug#load('ListToggle')
+				\ | autocmd! load_listToggle
+augroup END
+
 "nnoremap <silent> <leader>l :LToggle<cr><c-w><c-p>
 nnoremap <leader>j :lnext<cr>
 nnoremap <leader>k :lprevious<cr>
