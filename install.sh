@@ -6,10 +6,10 @@ BACKUP_DIR=".backup"
 function install()
 {
 	if [[ -f "$HOME/.vimrc" ]]; then
-		mv -vi "$HOME/.vimrc" "$SCRIPT_DIR/BACKUP_DIR"
+		mv -vi "$HOME/.vimrc" "$SCRIPT_DIR/$BACKUP_DIR"
 	fi
 	if [[ -d "$HOME/.vim" ]]; then
-		mv -vi "$HOME/.vim" "$SCRIPT_DIR/BACKUP_DIR"
+		mv -vi "$HOME/.vim" "$SCRIPT_DIR/$BACKUP_DIR"
 	fi
 	ln -s "$SCRIPT_DIR/.vimrc" "$HOME/.vimrc"
 	ln -s "$SCRIPT_DIR/.vim" "$HOME/.vim"
@@ -23,8 +23,8 @@ function uninstall()
 	if [[ -h "$HOME/.vim" ]]; then
 		rm "$HOME/.vim"
 	fi
-	mv "$SCRIPT_DIR/BACKUP_DIR/.vimrc" "$HOME/.vimrc"
-	mv "$SCRIPT_DIR/BACKUP_DIR/.vim" "$HOME/.vim"
+	mv "$SCRIPT_DIR/$BACKUP_DIR/.vimrc" "$HOME/.vimrc"
+	mv "$SCRIPT_DIR/$BACKUP_DIR/.vim" "$HOME/.vim"
 }
 
 function main()
