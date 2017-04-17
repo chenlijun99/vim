@@ -6,10 +6,10 @@ BACKUP_DIR=".backup"
 function install()
 {
 	if [[ -f "$HOME/.vimrc" ]]; then
-		mv -vi "$HOME/.vimrc" "$SCRIPT_DIR/$BACKUP_DIR"
+		mv -vi "$HOME/.vimrc" "$SCRIPT_DIR/$BACKUP_DIR/.vimrc"
 	fi
 	if [[ -d "$HOME/.vim" ]]; then
-		mv -vi "$HOME/.vim" "$SCRIPT_DIR/$BACKUP_DIR"
+		mv -vi "$HOME/.vim" "$SCRIPT_DIR/$BACKUP_DIR/.vim"
 	fi
 	ln -s "$SCRIPT_DIR/.vimrc" "$HOME/.vimrc"
 	ln -s "$SCRIPT_DIR/.vim" "$HOME/.vim"
