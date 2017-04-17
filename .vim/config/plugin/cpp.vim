@@ -6,6 +6,12 @@ let g:cpp_experimental_template_highlight = 1
 let g:cpp_concepts_highlight = 1
 " }}}
 
+" justmao945/vim-clang {{{
+Plug 'justmao945/vim-clang' , { 'for' : 'cpp'}
+let g:clang_cpp_completeopt = 'menuone,noselect'
+let g:clang_diagsopt = '' " disable diagnostic
+" }}}
+
 "'vim-scripts/OmniCppComplete' {{{
 Plug 'vim-scripts/OmniCppComplete', { 'for' : 'cpp' }
 let OmniCpp_NamespaceSearch = 1

@@ -93,7 +93,7 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
@@ -173,19 +173,6 @@ Plug 'xuyuanp/nerdtree-git-plugin' , { 'on' :
 nnoremap so :TagbarToggle<cr>
 nnoremap sf :NERDTreeFind<cr>
 nnoremap S :TagbarClose<cr>:NERDTreeClose<cr>
-" }}}
-
-" Valloric/YouCompleteMe {{{
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
-			\ 'on': []}
-augroup load_ycm
-	autocmd!
-	autocmd FileType c,cpp
-				\ autocmd BufEnter * call plug#load('YouCompleteMe') 
-				\ | autocmd! load_ycm
-augroup END
-
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'  
 " }}}
 
 "bkad/CamelCaseMotion {{{
