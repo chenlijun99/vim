@@ -23,8 +23,12 @@ function uninstall()
 	if [[ -h "$HOME/.vim" ]]; then
 		rm "$HOME/.vim"
 	fi
-	mv "$SCRIPT_DIR/$BACKUP_DIR/.vimrc" "$HOME/.vimrc"
-	mv "$SCRIPT_DIR/$BACKUP_DIR/.vim" "$HOME/.vim"
+	if [[ -f "$SCRIPT_DIR/$BACKUP_DIR/.vimrc" ]]; then
+		mv -vi "$SCRIPT_DIR/$BACKUP_DIR/.vimrc" "$HOME/.vimrc"
+	fi
+	if [[ -d "$SCRIPT_DIR/$BACKUP_DIR/.vim" ]]; then
+		mv -vi "$SCRIPT_DIR/$BACKUP_DIR/.vim" "$HOME/.vim"
+	fi
 }
 
 function main()
