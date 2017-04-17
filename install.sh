@@ -13,6 +13,7 @@ function install()
 	fi
 	ln -s "$SCRIPT_DIR/.vimrc" "$HOME/.vimrc"
 	ln -s "$SCRIPT_DIR/.vim" "$HOME/.vim"
+	vim -c "PlugInstall" -c "qa!"
 }
 
 function uninstall()

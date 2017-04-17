@@ -20,7 +20,6 @@ otherwise you could try to compile vim from source following this
 is preferable, as with older versions *tern* fails to install)
 * **jdk-8** for **java** completion
 * **clang** for **c-family language** completion
-<<<<<<< HEAD
 
 ## Installation
 
@@ -28,7 +27,6 @@ is preferable, as with older versions *tern* fails to install)
 git clone https://github.com/free-easy/vim
 cd vim
 ./install.sh
-vim -c "PlugInstall"
 ```
 With commands above, there will be created system links to the `.vimrc` and `.vim/`
 of this repository in home and installed all the plugins.
