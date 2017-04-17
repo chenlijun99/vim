@@ -20,6 +20,7 @@ otherwise you could try to compile vim from source following this
 is preferable, as with older versions *tern* fails to install)
 * **jdk-8** for **java** completion
 * **clang** for **c-family language** completion
+<<<<<<< HEAD
 
 ## Installation
 
@@ -39,3 +40,5 @@ To unset this vim configuration, just run
 install.sh --uninstall
 ```
 and the old configuration, if exists, will be moved back.
+=======
+>>>>>>> 3e9b187fc9124698fed2a8e05b30dd6bf9a14ed8
