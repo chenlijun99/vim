@@ -259,11 +259,14 @@ let g:lt_height=10	" set location list height
 
 augroup load_listToggle
 	autocmd!
-	autocmd BufWrite * call plug#load('ListToggle')
+	autocmd BufWrite,QuickFixCmdPost * call plug#load('ListToggle')
 				\ | autocmd! load_listToggle
 augroup END
 
+" do not need to set these mappings since they are already set by plugin
 "nnoremap <silent> <leader>l :LToggle<cr><c-w><c-p>
+"nnoremap <silent> <leader>q :QToggle<cr><c-w><c-p>
+
 nnoremap <leader>j :lnext<cr>
 nnoremap <leader>k :lprevious<cr>
 "}}}
@@ -379,7 +382,7 @@ let g:rooter_silent_chdir = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_resolve_links = 1
 let g:rooter_patterns = ['package.json', '.git/', '.git']
-let g:rooter_targets="*.cpp,*.cxx,*.c,*.hxx,*.hpp,*.java,*.adoc,*.md,*.dot,*.js"
+let g:rooter_targets="*.cpp,*.cxx,*.c,*.hxx,*.hpp,*.java,*.adoc,*.md,*.dot,*.js,*.html,*.css,*.less,*.sass"
 
 " }}}
 
@@ -432,6 +435,10 @@ augroup load_syntaxcomplete
 				\ | set completefunc=syntaxcomplete#Complete
 				\ | autocmd! load_syntaxcomplete
 augroup END
+"}}}
+"
+"mileszs/ack.vim {{{
+Plug 'mileszs/ack.vim'
 "}}}
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
