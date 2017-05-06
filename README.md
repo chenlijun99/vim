@@ -20,6 +20,8 @@ otherwise you could try to compile vim from source following this
 is preferable, as with older versions *tern* fails to install)
 * **jdk-8** for **java** completion
 * **clang** for **c-family language** completion
+* Look [here](https://github.com/w0rp/ale#supported-languages) for specific linters that you'd have
+for some language
 
 ## Installation
 
