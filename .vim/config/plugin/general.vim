@@ -117,6 +117,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " junegunn/fzf.vim {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+nnoremap <c-p> :FzfGFiles<cr>
 let g:fzf_command_prefix = 'Fzf'
 
 " Default fzf layout
@@ -436,7 +437,8 @@ let g:zv_file_types = {
 			\ '(plain|tex)?tex'	:	'latex',
 			\ 'html'			:	'html,bootstrap',
 			\ 'css'				:	'css',
-			\ 'javascript'		:	'javascript'
+			\ 'javascript'		:	'javascript',
+			\ 'sh'				:	'bash'
 			\}
 
 let g:zv_get_docset_by = ['ft', 'ext']
@@ -456,7 +458,7 @@ Plug 'Chiel92/vim-autoformat' , { 'on' : 'Autoformat' }
 " }}}
 "
 "vim-scripts/SyntaxComplete {{{
-Plug 'vim-scripts/SyntaxComplete'
+Plug 'vim-scripts/SyntaxComplete', { 'on' : [] }
 
 augroup load_syntaxcomplete
 	autocmd!
@@ -467,7 +469,9 @@ augroup END
 "}}}
 "
 "mileszs/ack.vim {{{
-Plug 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim', { 'on' : ['Ack','LAck'] }
+nnoremap <leader>f :Ack! 
 "}}}
+
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
