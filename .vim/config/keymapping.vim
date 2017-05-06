@@ -46,8 +46,7 @@ nnoremap <leader>sP :execute printf("vsplit %s/%s.vim",g:sourcePluginsFilesDir, 
 nnoremap <leader>ep :execute printf("vsplit %s/%s.vim",g:sourcePluginsFilesDir, &filetype)<cr>
 nnoremap <leader>sp :execute printf("source %s/%s.vim",g:sourcePluginsFilesDir, &filetype)<cr>
 
-" turn off the search highlight
-nnoremap <silent> <CR> :nohlsearch<CR>
+" sudo write
 command! W :w !sudo tee %
 
 " use space to toggle folding
