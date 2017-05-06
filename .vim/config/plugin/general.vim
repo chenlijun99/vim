@@ -5,24 +5,6 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 "Shougo/echodoc.vim {{{
 Plug 'Shougo/echodoc.vim'
 "}}}
-"Shougo/denite.nvim {{{
-function! SetupDenite()
-	call denite#custom#map(
-				\ 'insert',
-				\ 'jk',
-				\ '<denite:enter_mode:normal>',
-				\ 'noremap'
-				\)
-	highlight deniteMatchedChar term=standout cterm=bold ctermfg=167 gui=bold guifg=#fb4934
-	highlight deniteMatchedRange term=standout cterm=bold ctermfg=167 gui=bold guifg=#fb4934
-
-endfunction
-
-Plug 'Shougo/denite.nvim' , { 'on' : ['DeniteProjectDir',
-			\'Denite'] }
-autocmd! User denite.nvim call SetupDenite()
-nmap <c-p> :DeniteProjectDir buffer file_rec<cr>
-"}}}
 " {{{ Shougo/neocomplete
 Plug 'Shougo/neocomplete' , { 'on' : [] }
 augroup load_neocomplete
@@ -130,6 +112,46 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "if has('conceal')
 "set conceallevel=2 concealcursor=niv
 "endif
+" }}}
+
+" junegunn/fzf.vim {{{
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+let g:fzf_command_prefix = 'Fzf'
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '37%' }
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Enable per-command history.
+" CTRL-N and CTRL-P will be automatically bound to next-history and
+" previous-history instead of down and up. If you don't like the change,
+" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+" }}}
+" junegunn/goyo.vim {{{
+Plug 'junegunn/goyo.vim' , { 'on' : ['Goyo', 'Goyo!'] }
+" }}}
+" junegunn/vim-slash {{{
+Plug 'junegunn/vim-slash'
+" }}}
+" junegunn/rainbow_parentheses.vim {{{
+Plug 'junegunn/rainbow_parentheses.vim'
 " }}}
 
 " Sidepanel {{{
