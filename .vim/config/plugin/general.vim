@@ -276,19 +276,11 @@ let g:bufferline_active_buffer_left = '['
 " }}}
 
 " 'Valloric/ListToggle' {{{
-Plug 'Valloric/ListToggle' , { 'on' : [] }
-let g:lt_height=10	" set location list height
-
-augroup load_listToggle
-	autocmd!
-	autocmd BufWrite,QuickFixCmdPost * call plug#load('ListToggle')
-				\ | autocmd! load_listToggle
-augroup END
-
-" do not need to set these mappings since they are already set by plugin
-"nnoremap <silent> <leader>l :LToggle<cr><c-w><c-p>
-"nnoremap <silent> <leader>q :QToggle<cr><c-w><c-p>
-
+Plug 'Valloric/ListToggle'
+" set location list height
+let g:lt_height=10
+let g:lt_location_list_toggle_map = '<leader>l'
+let g:lt_quickfix_list_toggle_map = '<leader>q'
 nnoremap <leader>j :lnext<cr>
 nnoremap <leader>k :lprevious<cr>
 "}}}
