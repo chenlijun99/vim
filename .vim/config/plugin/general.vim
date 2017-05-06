@@ -197,6 +197,10 @@ nnoremap sf :NERDTreeFind<cr>
 nnoremap S :TagbarClose<cr>:NERDTreeClose<cr>
 " }}}
 
+" tpope/vim-repeat {{{
+Plug 'tpope/vim-repeat'
+" }}}
+
 "bkad/CamelCaseMotion {{{
 Plug 'bkad/CamelCaseMotion' , { 'on' : [] }
 
@@ -281,8 +285,19 @@ Plug 'Valloric/ListToggle'
 let g:lt_height=10
 let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<leader>q'
-nnoremap <leader>j :lnext<cr>
-nnoremap <leader>k :lprevious<cr>
+nmap <Plug>JumpNextLocationList :lnext<Bar>
+			\ silent! call repeat#set("\<Plug>JumpNextLocationList")<cr>
+nmap <leader>lj <Plug>JumpNextLocationList
+nmap <Plug>JumpPreviousLocationList :lprevious<Bar>
+			\ silent! call repeat#set("\<Plug>JumpPreviousLocationList")<cr>
+nmap <leader>lk <Plug>JumpPreviousLocationList
+
+nmap <Plug>JumpNextQuickFix :cnext<Bar>
+			\ silent! call repeat#set("\<Plug>JumpNextQuickFix")<cr>
+nmap <leader>cj <Plug>JumpNextQuickFix
+nmap <Plug>JumpPreviousQuickFix :cprevious<Bar>
+			\ silent! call repeat#set("\<Plug>JumpPreviousQuickFix")<cr>
+nmap <leader>ck <Plug>JumpPreviousQuickFix
 "}}}
 
 " istib/vifm.vim {{{
