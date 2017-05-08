@@ -118,6 +118,8 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 nnoremap <c-p> :FzfGFiles<cr>
+nnoremap <leader>p :Fzf
+
 let g:fzf_command_prefix = 'Fzf'
 
 " Default fzf layout
@@ -235,7 +237,7 @@ augroup END
 Plug 'tpope/vim-fugitive' , { 'on' : [] }
 augroup load_fugitive
 	autocmd!
-	autocmd TextChanged,TextChangedI * call plug#load('vim-fugitive') 
+	autocmd BufEnter * call plug#load('vim-fugitive') 
 				\ | autocmd! load_fugitive
 augroup END
 autocmd! User vim-fugitive call fugitive#detect(expand('%:p'))

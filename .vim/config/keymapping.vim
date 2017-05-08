@@ -2,6 +2,7 @@ let mapleader=","
 
 " enter normal mode from homerow
 inoremap jk <Esc>
+cnoremap jk <c-c>
 
 " in-line scrolling
 nnoremap j gj
