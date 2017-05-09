@@ -3,7 +3,13 @@
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 "}}}
 "Shougo/echodoc.vim {{{
-Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/echodoc.vim', { 'on' : [] }
+let g:echodoc_enable_at_startup=1
+augroup load_echodoc
+	autocmd!
+	autocmd InsertEnter * call plug#load('echodoc.vim') 
+				\ | autocmd! load_echodoc
+augroup END
 "}}}
 " {{{ Shougo/neocomplete
 Plug 'Shougo/neocomplete' , { 'on' : [] }
@@ -74,23 +80,33 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 	let g:neocomplete#sources#omni#input_patterns = {}
 endif
 "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.java = '\h\w*\.\w*'
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " }}}
+" Shougo/neoinclude.vim {{{
+Plug 'Shougo/neoinclude.vim' 
+augroup load_neoinclude
+	autocmd!
+	autocmd InsertEnter * call plug#load('neoinclude.vim') 
+				\ | autocmd! load_neoinclude
+augroup END
+" }}}
 " {{{ Shougo/neosnippet
 Plug 'Shougo/neosnippet' , { 'on' : [] }
+Plug 'Shougo/neosnippet-snippets'
 augroup load_neosnippet
 	autocmd!
 	autocmd InsertEnter * call plug#load('neosnippet') 
 				\ | autocmd! load_neosnippet
 augroup END
 
-autocmd! User neocomplete call neocomplete#init#enable()
-Plug 'Shougo/neosnippet-snippets'
+autocmd! User neosnippet call neosnippet#init#_initialize()
+
 let g:neosnippet#snippets_directory = ['~/.vim/snippets/']
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -155,6 +171,10 @@ Plug 'junegunn/vim-slash'
 " }}}
 " junegunn/rainbow_parentheses.vim {{{
 Plug 'junegunn/rainbow_parentheses.vim'
+" }}}
+
+" sheerun/vim-polyglot {{{
+Plug 'sheerun/vim-polyglot'
 " }}}
 
 " Sidepanel {{{
@@ -226,7 +246,7 @@ endfunction
 
 augroup load_camelcasemotion
 	autocmd!
-	autocmd FileType cpp,java,javascript
+	autocmd FileType cpp,java,javascript,vim
 				\ autocmd BufEnter * call plug#load('CamelCaseMotion')
 				\ | call s:MapCamelCaseMotion()
 				\ | autocmd! load_camelcasemotion

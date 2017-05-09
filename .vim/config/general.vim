@@ -43,6 +43,9 @@ set hidden
 
 set timeoutlen=500
 
+set cmdheight=2
+
+
 " Search {{{
 " highlight searched pattern
 set hlsearch
