@@ -496,5 +496,6 @@ Plug 'mileszs/ack.vim', { 'on' : ['Ack','LAck'] }
 nnoremap <leader>f :Ack! 
 "}}}
 
+Plug 'itchyny/lightline.vim'
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
