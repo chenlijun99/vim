@@ -133,7 +133,17 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " junegunn/fzf.vim {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-nnoremap <c-p> :FzfGFiles<cr>
+autocmd! BufEnter * call SetFzfMainMapping()
+nnoremap <expr> <c-p> FzfMainMapping()
+
+function FzfMainMapping()
+	if exists('*fugitive#head') && !empty(fugitive#head())
+		return ':FzfGFiles'
+	else
+		return ':FzfFiles'
+	endif
+endfunction
+
 nnoremap <leader>p :Fzf
 
 let g:fzf_command_prefix = 'Fzf'
@@ -495,7 +505,8 @@ augroup END
 Plug 'mileszs/ack.vim', { 'on' : ['Ack','LAck'] }
 nnoremap <leader>f :Ack! 
 "}}}
-
+" itchyny/lightline.vim {{{
 Plug 'itchyny/lightline.vim'
+" }}}
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
