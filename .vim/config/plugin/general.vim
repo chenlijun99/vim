@@ -136,7 +136,7 @@ Plug 'junegunn/fzf.vim'
 autocmd! BufEnter * call SetFzfMainMapping()
 nnoremap <expr> <c-p> FzfMainMapping()
 
-function FzfMainMapping()
+function! FzfMainMapping()
 	if exists('*fugitive#head') && !empty(fugitive#head())
 		return ':FzfGFiles'
 	else
@@ -505,8 +505,27 @@ augroup END
 Plug 'mileszs/ack.vim', { 'on' : ['Ack','LAck'] }
 nnoremap <leader>f :Ack! 
 "}}}
+
 " itchyny/lightline.vim {{{
 Plug 'itchyny/lightline.vim'
+" }}}
+
+" ludovicchabant/vim-gutentags {{{
+Plug 'ludovicchabant/vim-gutentags'
+let g:gutentags_enabled=0
+augroup autoToggleGutentags
+	autocmd!
+	autocmd! BufEnter * call AutoToggleGutenTags()
+augroup END 
+
+function! AutoToggleGutenTags()
+	" activate gutentags only when in a git repository
+	if exists('*fugitive#head') && !empty(fugitive#head())
+		let g:gutentags_enabled=1
+	else
+		let g:gutentags_enabled=0
+	endif
+endfunction
 " }}}
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
