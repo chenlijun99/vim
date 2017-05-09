@@ -144,7 +144,11 @@ function! FzfMainMapping()
 	endif
 endfunction
 
-nnoremap <leader>p :Fzf
+nnoremap <leader>pt :FzfTags<cr>
+nnoremap <leader>ph :FzfHistory<cr>
+nnoremap <leader>pbc :FzfBCommits<cr>
+nnoremap <leader>pc :FzfCommits<cr>
+nnoremap <leader>pp :Fzf
 
 let g:fzf_command_prefix = 'Fzf'
 
