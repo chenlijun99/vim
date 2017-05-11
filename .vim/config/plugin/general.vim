@@ -508,6 +508,14 @@ augroup END
 "mileszs/ack.vim {{{
 Plug 'mileszs/ack.vim', { 'on' : ['Ack','LAck'] }
 nnoremap <leader>f :Ack! 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+let g:ack_use_dispatch = 1
+"}}}
+
+"tpope/vim-dispatch {{{
+Plug 'tpope/vim-dispatch', { 'on': ['Dispatch', 'Make'] }
 "}}}
 
 " itchyny/lightline.vim {{{
@@ -531,5 +539,6 @@ function! AutoToggleGutenTags()
 	endif
 endfunction
 " }}}
+
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
