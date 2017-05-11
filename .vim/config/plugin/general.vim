@@ -332,10 +332,10 @@ nmap <leader>lk <Plug>JumpPreviousLocationList
 
 nmap <Plug>JumpNextQuickFix :cnext<Bar>
 			\ silent! call repeat#set("\<Plug>JumpNextQuickFix")<cr>
-nmap <leader>cj <Plug>JumpNextQuickFix
+nmap <leader>qj <Plug>JumpNextQuickFix
 nmap <Plug>JumpPreviousQuickFix :cprevious<Bar>
 			\ silent! call repeat#set("\<Plug>JumpPreviousQuickFix")<cr>
-nmap <leader>ck <Plug>JumpPreviousQuickFix
+nmap <leader>qk <Plug>JumpPreviousQuickFix
 "}}}
 
 " istib/vifm.vim {{{
