@@ -133,6 +133,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " junegunn/fzf.vim {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+let g:fzf_launcher = 'xterm -fa "Monospace" -fs 12 -e bash -ic %s'
 autocmd! BufEnter * call SetFzfMainMapping()
 nnoremap <expr> <c-p> FzfMainMapping()
 
