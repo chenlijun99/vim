@@ -133,15 +133,21 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " junegunn/fzf.vim {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=? GFiles
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
 let g:fzf_launcher = 'xterm -fa "Monospace" -fs 12 -e bash -ic %s'
 autocmd! BufEnter * call SetFzfMainMapping()
 nnoremap <expr> <c-p> FzfMainMapping()
 
 function! FzfMainMapping()
 	if exists('*fugitive#head') && !empty(fugitive#head())
-		return ':FzfGFiles'
+		return ':GFiles'
 	else
-		return ':FzfFiles'
+		return ':Files'
 	endif
 endfunction
 
