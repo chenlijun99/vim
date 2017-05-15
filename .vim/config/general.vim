@@ -43,6 +43,8 @@ set hidden
 
 set timeoutlen=500
 
+" since there is already lightline which shows the current mode,
+" leave space for echodoc
 set noshowmode
 
 
@@ -77,12 +79,16 @@ set guifont=DejaVu\ Sans\ Mono\ 12
 
 " enable folding
 set foldenable
-set foldmethod=syntax
+set foldmethod=indent
 set foldcolumn=1
 " when enter in a buffer, no folds are closed
 set foldlevelstart=99
-set foldnestmax=1
+set foldnestmax=5
 "}}}
+
+" gui {{{
+set guioptions=a
+" }}}
 
 set list listchars=tab:\▸\ 
 
