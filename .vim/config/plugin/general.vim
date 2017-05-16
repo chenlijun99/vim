@@ -358,7 +358,7 @@ Plug 'terryma/vim-multiple-cursors' , { 'on' : 'MultipleCursorsFind' }
 
 " add window mode to vim
 Plug 'romgrk/winteract.vim' , { 'on' : 'InteractiveWindow' }
-nnoremap <leader>w :InteractiveWindow<cr>
+nnoremap <c-w> :InteractiveWindow<cr>
 function! SetupWinteract()
 	let g:winmap.normal = {
 				\ "\<c-h>": "normal! \<C-w><" , "=": "normal! \<C-w>=" ,
