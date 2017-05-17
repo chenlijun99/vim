@@ -135,9 +135,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Files command with preview window
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+			\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 command! -bang -nargs=? GFiles
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+			\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 let g:fzf_launcher = 'xterm -fa "Monospace" -fs 12 -e bash -ic %s'
 autocmd! BufEnter * call SetFzfMainMapping()
@@ -165,18 +165,18 @@ let g:fzf_layout = { 'down': '37%' }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+			\ { 'fg':      ['fg', 'Normal'],
+			\ 'bg':      ['bg', 'Normal'],
+			\ 'hl':      ['fg', 'Comment'],
+			\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+			\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+			\ 'hl+':     ['fg', 'Statement'],
+			\ 'info':    ['fg', 'PreProc'],
+			\ 'prompt':  ['fg', 'Conditional'],
+			\ 'pointer': ['fg', 'Exception'],
+			\ 'marker':  ['fg', 'Keyword'],
+			\ 'spinner': ['fg', 'Label'],
+			\ 'header':  ['fg', 'Comment'] }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -295,9 +295,9 @@ augroup END
 
 "tpope/vim-surround {{{
 Plug 'tpope/vim-surround',
-      \ { 'on': ['<Plug>Dsurround', '<Plug>Csurround', '<Plug>CSurround',
-      \ '<Plug>Ysurround',  '<Plug>YSurround', '<Plug>Yssurround',
-      \ '<Plug>YSsurround', '<Plug>VSurround', '<Plug>VgSurround'] }
+			\ { 'on': ['<Plug>Dsurround', '<Plug>Csurround', '<Plug>CSurround',
+			\ '<Plug>Ysurround',  '<Plug>YSurround', '<Plug>Yssurround',
+			\ '<Plug>YSsurround', '<Plug>VSurround', '<Plug>VgSurround'] }
 xmap S <Plug>VSurround
 "}}}
 
@@ -305,9 +305,9 @@ xmap S <Plug>VSurround
 "Plug 'ervandew/supertab' , { 'on' : [] }
 "let g:SuperTabDefaultCompletionType = "<c-n>"
 "augroup load_supertab
-	"autocmd!
-	"autocmd InsertEnter * call plug#load('supertab') 
-				"\ | autocmd! load_supertab
+"autocmd!
+"autocmd InsertEnter * call plug#load('supertab') 
+"\ | autocmd! load_supertab
 "augroup END
 " }}}
 
@@ -332,17 +332,17 @@ let g:lt_quickfix_list_toggle_map = '<leader>q'
 
 nmap <Plug>JumpNextLocationList :lnext<Bar>
 			\ silent! call repeat#set("\<Plug>JumpNextLocationList")<cr>
-nmap <leader>lj <Plug>JumpNextLocationList
+nmap <c-j> <Plug>JumpNextLocationList
 nmap <Plug>JumpPreviousLocationList :lprevious<Bar>
 			\ silent! call repeat#set("\<Plug>JumpPreviousLocationList")<cr>
-nmap <leader>lk <Plug>JumpPreviousLocationList
+nmap <c-k> <Plug>JumpPreviousLocationList
 
 nmap <Plug>JumpNextQuickFix :cnext<Bar>
 			\ silent! call repeat#set("\<Plug>JumpNextQuickFix")<cr>
-nmap <leader>qj <Plug>JumpNextQuickFix
+nmap <leader>j <Plug>JumpNextQuickFix
 nmap <Plug>JumpPreviousQuickFix :cprevious<Bar>
 			\ silent! call repeat#set("\<Plug>JumpPreviousQuickFix")<cr>
-nmap <leader>qk <Plug>JumpPreviousQuickFix
+nmap <leader>k <Plug>JumpPreviousQuickFix
 "}}}
 
 " istib/vifm.vim {{{
@@ -462,17 +462,16 @@ let g:rooter_targets="*.cpp,*.cxx,*.c,*.hxx,*.hpp,*.java,*.adoc,*.md,*.dot,*.js,
 
 "'KabbAmine/zeavim.vim' {{{
 Plug 'KabbAmine/zeavim.vim', {'on': [
-            \   'Zeavim', 'Docset',
-            \   '<Plug>Zeavim',
-            \   '<Plug>ZVVisSelection',
-            \   '<Plug>ZVKeyDocset',
-            \   '<Plug>ZVMotion'
-            \ ]}
+			\   'Zeavim', 'Docset',
+			\   '<Plug>Zeavim',
+			\   '<Plug>ZVVisSelection',
+			\   '<Plug>ZVKeyDocset',
+			\   '<Plug>ZVMotion'
+			\ ]}
 
 nnoremap K :Zeavim<cr>
 vnoremap K :Zeavim<cr>
-nnoremap <leader>k :Zeavim!<cr><cr>
-nnoremap <leader>K :Zeavim!<cr><c-w>
+nnoremap <leader>K :Zeavim!<cr><cr>
 
 let g:zv_disable_mapping = 1
 let g:zv_file_types = {
@@ -481,7 +480,7 @@ let g:zv_file_types = {
 			\ '(plain|tex)?tex'	:	'latex',
 			\ 'html'			:	'html,bootstrap',
 			\ 'css'				:	'css',
-			\ 'javascript'		:	'javascript',
+			\ 'javascript'		:	'javascript,angularjs',
 			\ 'sh'				:	'bash'
 			\}
 
@@ -516,7 +515,7 @@ augroup END
 Plug 'mileszs/ack.vim', { 'on' : ['Ack','LAck'] }
 nnoremap <leader>f :Ack! 
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+	let g:ackprg = 'ag --vimgrep'
 endif
 let g:ack_use_dispatch = 1
 "}}}
@@ -547,5 +546,20 @@ function! AutoToggleGutenTags()
 endfunction
 " }}}
 
+" tyru/open-browser.vim {{{
+Plug 'tyru/open-browser.vim', { 'on' : [ 'OpenBrowser', 'OpenBrowserSearch', 'OpenBrowserSmartSearch' ] }
+nmap <leader>b :OpenBrowserSmartSearch
+let g:openbrowser_search_engines = extend(
+			\ get(g:, 'openbrowser_search_engines', {}),
+			\ {
+			\	't': 'http://www.wordreference.com/enit/{query}',
+			\ 	'b': 'http://www.baidu.com/s?wd={query}&rsv_bp=0&rsv_spt=3&inputT=2478',
+			\ 	'github': 'http://github.com/search?q={query}',
+			\ 	'g': 'http://google.com/search?q={query}',
+			\ 	'w': 'http://en.wikipedia.org/wiki/{query}',
+			\ },
+			\ 'keep'
+			\)
+" }}}
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
