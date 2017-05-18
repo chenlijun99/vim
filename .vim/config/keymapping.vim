@@ -1,6 +1,6 @@
 let mapleader=","
 
-" enter normal mode from homerow
+" enter normal mode by pressing keys of homerow
 inoremap jk <Esc>
 cnoremap jk <c-c>
 
@@ -20,6 +20,8 @@ nnoremap H ^
 nnoremap L g_
 vnoremap H ^
 vnoremap L g_
+onoremap H ^
+onoremap L g_
 
 " edit vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -52,3 +54,7 @@ command! W :w !sudo tee %
 
 " use space to toggle folding
 nnoremap <Space> za<Space>
+
+" open a gnome-terminal instance in pwd
+nnoremap <leader>t :!gnome-terminal &<cr><cr>
+
