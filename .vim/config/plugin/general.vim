@@ -1,4 +1,3 @@
-
 "Shougo/vimproc.vim {{{
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 "}}}
@@ -7,7 +6,7 @@ Plug 'Shougo/echodoc.vim', { 'on' : [] }
 let g:echodoc_enable_at_startup=1
 augroup load_echodoc
 	autocmd!
-	autocmd InsertEnter * call plug#load('echodoc.vim') 
+	autocmd InsertEnter * call plug#load('echodoc.vim')
 				\ | autocmd! load_echodoc
 augroup END
 "}}}
@@ -15,7 +14,7 @@ augroup END
 Plug 'Shougo/neocomplete' , { 'on' : [] }
 augroup load_neocomplete
 	autocmd!
-	autocmd InsertEnter * call plug#load('neocomplete') 
+	autocmd InsertEnter * call plug#load('neocomplete')
 				\ | autocmd! load_neocomplete
 augroup END
 autocmd! User neocomplete call neocomplete#init#enable()
@@ -69,30 +68,28 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 "let g:neocomplete#enable_auto_select = 1
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-	let g:neocomplete#sources#omni#input_patterns = {}
+if !exists('g:neocomplete_force_omni_input_patterns')
+	let g:neocomplete_force_omni_input_patterns = {}
 endif
 "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.java = '\h\w*\.\w*'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+let g:neocomplete_force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplete_force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplete_force_omni_input_patterns.java = '\h\w*\.\w*'
+let g:neocomplete_force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+let g:neocomplete_force_omni_input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " }}}
 " Shougo/neoinclude.vim {{{
-Plug 'Shougo/neoinclude.vim' 
+Plug 'Shougo/neoinclude.vim'
 augroup load_neoinclude
 	autocmd!
-	autocmd InsertEnter * call plug#load('neoinclude.vim') 
+	autocmd InsertEnter * call plug#load('neoinclude.vim')
 				\ | autocmd! load_neoinclude
 augroup END
 " }}}
@@ -101,7 +98,7 @@ Plug 'Shougo/neosnippet' , { 'on' : [] }
 Plug 'Shougo/neosnippet-snippets'
 augroup load_neosnippet
 	autocmd!
-	autocmd InsertEnter * call plug#load('neosnippet') 
+	autocmd InsertEnter * call plug#load('neosnippet')
 				\ | autocmd! load_neosnippet
 augroup END
 
@@ -193,6 +190,35 @@ Plug 'junegunn/vim-slash'
 " junegunn/rainbow_parentheses.vim {{{
 Plug 'junegunn/rainbow_parentheses.vim'
 " }}}
+" junegunn/vim-easy-align {{{
+Plug 'junegunn/vim-easy-align'
+" }}}
+
+"tpope/vim-dispatch {{{
+Plug 'tpope/vim-dispatch', { 'on': ['Dispatch', 'Make'] }
+"}}}
+" tpope/vim-repeat {{{
+Plug 'tpope/vim-repeat'
+" }}}
+"tpope/vim-surround {{{
+Plug 'tpope/vim-surround',
+			\ { 'on': ['<Plug>Dsurround', '<Plug>Csurround', '<Plug>CSurround',
+			\ '<Plug>Ysurround',  '<Plug>YSurround', '<Plug>Yssurround',
+			\ '<Plug>YSsurround', '<Plug>VSurround', '<Plug>VgSurround'] }
+xmap S <Plug>VSurround
+"}}}
+"tpope/vim-fugitive {{{
+Plug 'tpope/vim-fugitive' , { 'on' : [] }
+augroup load_fugitive
+	autocmd!
+	autocmd BufEnter * call plug#load('vim-fugitive')
+				\ | autocmd! load_fugitive
+augroup END
+autocmd! User vim-fugitive call fugitive#detect(expand('%:p'))
+"}}}
+" tpope/vim-eunuch {{{
+Plug 'tpope/vim-eunuch'
+" }}}
 
 " sheerun/vim-polyglot {{{
 Plug 'sheerun/vim-polyglot'
@@ -201,7 +227,7 @@ Plug 'sheerun/vim-polyglot'
 " Sidepanel {{{
 
 " 'majutsushi/tagbar' {{{
-Plug 'majutsushi/tagbar', { 'on' : 
+Plug 'majutsushi/tagbar', { 'on' :
 			\['TagbarToggle',
 			\'SidePanel tagbar',
 			\'TagbarOpen',
@@ -235,14 +261,19 @@ Plug 'xuyuanp/nerdtree-git-plugin' , { 'on' :
 			\'NERDTreeClose'] }
 "}}}
 " }}}
-"
-nnoremap so :TagbarToggle<cr>
-nnoremap sf :NERDTreeFind<cr>
-nnoremap S :TagbarClose<cr>:NERDTreeClose<cr>
+
+" mbbill/undotree {{{
+Plug 'mbbill/undotree' , { 'on' : [
+			\'UndotreeToggle',
+			\'UndotreeShow',
+			\] 
+			\}
 " }}}
 
-" tpope/vim-repeat {{{
-Plug 'tpope/vim-repeat'
+nnoremap so :TagbarToggle<cr>
+nnoremap sf :NERDTreeFind<cr>
+nnoremap su :UndotreeToggle<cr>
+nnoremap S :TagbarClose<cr>:NERDTreeClose<cr>:UndotreeHide<cr>
 " }}}
 
 "bkad/CamelCaseMotion {{{
@@ -274,39 +305,21 @@ augroup load_camelcasemotion
 augroup END
 "}}}
 
-"tpope/vim-fugitive {{{
-Plug 'tpope/vim-fugitive' , { 'on' : [] }
-augroup load_fugitive
-	autocmd!
-	autocmd BufEnter * call plug#load('vim-fugitive') 
-				\ | autocmd! load_fugitive
-augroup END
-autocmd! User vim-fugitive call fugitive#detect(expand('%:p'))
-"}}}
-
 " airblade/vim-gitgutter {{{
 Plug 'airblade/vim-gitgutter' , { 'on' : [] }
 augroup load_vim-gitgutter
 	autocmd!
-	autocmd TextChanged,TextChangedI * call plug#load('vim-gitgutter') 
+	autocmd TextChanged,TextChangedI * call plug#load('vim-gitgutter')
 				\ | autocmd! load_vim-gitgutter
 augroup END
 " }}}
-
-"tpope/vim-surround {{{
-Plug 'tpope/vim-surround',
-			\ { 'on': ['<Plug>Dsurround', '<Plug>Csurround', '<Plug>CSurround',
-			\ '<Plug>Ysurround',  '<Plug>YSurround', '<Plug>Yssurround',
-			\ '<Plug>YSsurround', '<Plug>VSurround', '<Plug>VgSurround'] }
-xmap S <Plug>VSurround
-"}}}
 
 " 'ervandew/supertab' {{{
 "Plug 'ervandew/supertab' , { 'on' : [] }
 "let g:SuperTabDefaultCompletionType = "<c-n>"
 "augroup load_supertab
 "autocmd!
-"autocmd InsertEnter * call plug#load('supertab') 
+"autocmd InsertEnter * call plug#load('supertab')
 "\ | autocmd! load_supertab
 "augroup END
 " }}}
@@ -369,7 +382,7 @@ function! SetupWinteract()
 				\ "|": "exe g:winmode.count.'wincmd |'",
 				\ "\\": "exe g:winmode.count.'wincmd _'",
 				\ "&": "normal! :\<C-r>=&tw\<CR>wincmd |\<CR>" ,
-				\ 
+				\
 				\ "h": "normal! \<C-w>h" ,  "H": "normal! \<C-w>H" ,
 				\ "j": "normal! \<C-w>j" ,  "J": "normal! \<C-w>J" ,
 				\ "k": "normal! \<C-w>k" ,  "K": "normal! \<C-w>K" ,
@@ -379,7 +392,7 @@ function! SetupWinteract()
 				\ "c": "normal! \<C-w>c" , "p": "normal! :bp\<CR>" ,
 				\ "s": "normal! \<C-w>s" , "\<TAB>": "normal! :bn\<CR>" ,
 				\ "v": "normal! \<C-w>v" , "\<S-TAB>": "normal! :bp\<CR>" ,
-				\ 
+				\
 				\ "w": "normal! \<C-w>w" , "\<A-w>": "normal! \<C-w>p" ,
 				\ "W": "normal! \<C-w>W" ,
 				\ "q": "normal! :copen\<CR>" ,
@@ -436,7 +449,7 @@ Plug 'Konfekt/FastFold'
 Plug 'jiangmiao/auto-pairs' , { 'on' : [] }
 augroup load_auto-pairs
 	autocmd!
-	autocmd InsertEnter * call plug#load('auto-pairs') 
+	autocmd InsertEnter * call plug#load('auto-pairs')
 				\ | autocmd! load_auto-pairs
 augroup END
 autocmd! User auto-pairs call AutoPairsInit()
@@ -491,7 +504,7 @@ let g:zv_get_docset_by = ['ft', 'ext']
 Plug 'vim-scripts/fcitx.vim' , { 'on' : [] }
 augroup load_fcitx
 	autocmd!
-	autocmd InsertEnter * call plug#load('fcitx.vim') 
+	autocmd InsertEnter * call plug#load('fcitx.vim')
 				\ | autocmd! load_fcitx
 augroup END
 " }}}
@@ -505,7 +518,7 @@ Plug 'vim-scripts/SyntaxComplete', { 'on' : [] }
 
 augroup load_syntaxcomplete
 	autocmd!
-	autocmd InsertEnter * call plug#load('SyntaxComplete') 
+	autocmd InsertEnter * call plug#load('SyntaxComplete')
 				\ | set completefunc=syntaxcomplete#Complete
 				\ | autocmd! load_syntaxcomplete
 augroup END
@@ -513,15 +526,11 @@ augroup END
 "
 "mileszs/ack.vim {{{
 Plug 'mileszs/ack.vim', { 'on' : ['Ack','LAck'] }
-nnoremap <leader>f :Ack! 
+nnoremap <leader>f :Ack!
 if executable('ag')
 	let g:ackprg = 'ag --vimgrep'
 endif
 let g:ack_use_dispatch = 1
-"}}}
-
-"tpope/vim-dispatch {{{
-Plug 'tpope/vim-dispatch', { 'on': ['Dispatch', 'Make'] }
 "}}}
 
 " itchyny/lightline.vim {{{
@@ -534,7 +543,7 @@ let g:gutentags_enabled=0
 augroup autoToggleGutentags
 	autocmd!
 	autocmd! BufEnter * call AutoToggleGutenTags()
-augroup END 
+augroup END
 
 function! AutoToggleGutenTags()
 	" activate gutentags only when in a git repository
@@ -553,13 +562,17 @@ let g:openbrowser_search_engines = extend(
 			\ get(g:, 'openbrowser_search_engines', {}),
 			\ {
 			\	't': 'http://www.wordreference.com/enit/{query}',
-			\ 	'b': 'http://www.baidu.com/s?wd={query}&rsv_bp=0&rsv_spt=3&inputT=2478',
-			\ 	'github': 'http://github.com/search?q={query}',
-			\ 	'g': 'http://google.com/search?q={query}',
-			\ 	'w': 'http://en.wikipedia.org/wiki/{query}',
+			\	'b': 'http://www.baidu.com/s?wd={query}&rsv_bp=0&rsv_spt=3&inputT=2478',
+			\	'github': 'http://github.com/search?q={query}',
+			\	'g': 'http://google.com/search?q={query}',
+			\	'w': 'http://en.wikipedia.org/wiki/{query}',
 			\ },
 			\ 'keep'
 			\)
 " }}}
-" set modeline 
+
+" mhinz/vim-startify {{{
+Plug 'mhinz/vim-startify'
+" }}}
+" set modeline
 " vim: foldlevel=0 foldmethod=marker
