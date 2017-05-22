@@ -86,8 +86,17 @@ set foldlevelstart=99
 set foldnestmax=5
 "}}}
 
-" gui {{{
+" Gui {{{
 set guioptions=a
+" }}}
+
+" Undo {{{
+let s:undo_dir = $HOME . "/.vim/undo"
+if !isdirectory(s:undo_dir)
+	call system("mkdir " . s:undo_dir)
+endif
+let &undodir=s:undo_dir
+set undofile
 " }}}
 
 set list listchars=tab:\▸\ 
