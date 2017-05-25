@@ -555,8 +555,12 @@ function! AutoToggleGutenTags()
 endfunction
 " }}}
 
+" mhinz/vim-startify {{{
+Plug 'mhinz/vim-startify'
+" }}}
+
 " tyru/open-browser.vim {{{
-Plug 'tyru/open-browser.vim', { 'on' : [ 'OpenBrowser', 'OpenBrowserSearch', 'OpenBrowserSmartSearch' ] }
+Plug 'tyru/open-browser.vim'
 nmap <leader>b :OpenBrowserSmartSearch
 let g:openbrowser_search_engines = extend(
 			\ get(g:, 'openbrowser_search_engines', {}),
