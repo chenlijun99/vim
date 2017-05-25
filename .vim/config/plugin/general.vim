@@ -575,8 +575,36 @@ let g:openbrowser_search_engines = extend(
 			\)
 " }}}
 
-" mhinz/vim-startify {{{
-Plug 'mhinz/vim-startify'
+" thinca/vim-quickrun {{{
+Plug 'thinca/vim-quickrun'
+nnoremap <leader>r :QuickRun<cr>
+nnoremap <expr> <leader>R QuickRunMapping()
+function! QuickRunMapping()
+	return ":QuickRun " . &filetype . "/"
+endfunction
+
+let g:quickrun_config = {
+			\ 'asciidoc': {
+			\ 'command': 'asciidoctor',
+			\ 'cmdopt': '-o -',
+			\ 'outputter': 'browser',
+			\ 'runner': 'vimproc',
+			\},
+			\ 'asciidoc/pdf': {
+			\ 'command': 'asciidoctor-pdf',
+			\ 'cmdopt': '-o -',
+			\ 'exec': '%c %o %s | zathura -',
+			\ 'outputter': 'null',
+			\ 'runner': 'vimproc',
+			\},
+			\ 'asciidoc/html': {
+			\ 'command': 'asciidoctor',
+			\ 'cmdopt': '-o -',
+			\ 'outputter': 'browser',
+			\ 'runner': 'vimproc',
+			\},
+			\}
 " }}}
+"
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
