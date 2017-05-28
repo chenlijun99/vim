@@ -1,15 +1,3 @@
-" 'vim-syntastic/syntastic' {{{
-Plug 'vim-syntastic/syntastic', {'for' : 'asciidoc'}
-let g:syntastic_asciidoc_checkers = ["asciidoctor", "asciidoc"]
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_quiet_messages = { "level":  "warning" }
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-" }}}
-
 "w0rp/ale {{{
 Plug 'w0rp/ale'
 let g:ale_enabled=1
