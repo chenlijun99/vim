@@ -195,7 +195,7 @@ Plug 'junegunn/vim-easy-align'
 " }}}
 
 "tpope/vim-dispatch {{{
-Plug 'tpope/vim-dispatch', { 'on': ['Dispatch', 'Make'] }
+Plug 'tpope/vim-dispatch', { 'on': ['Dispatch', 'Make', 'Start'] }
 "}}}
 " tpope/vim-repeat {{{
 Plug 'tpope/vim-repeat'
