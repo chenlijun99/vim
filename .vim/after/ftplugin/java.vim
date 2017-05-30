@@ -7,14 +7,21 @@ endif
 
 nnoremap <buffer> <leader>r :call Run()<cr>
 
-function! Run()
+" {{{ functions and commands
+command! -nargs=* Run call Run(<f-args>)
+
+function! Run(...)
 	let mainFile = JavaMain()
 	let mainExecutable = substitute(mainFile, "\.java$", "", "")
 	
-	"execute 'Start javac ' . expand('%') . ' && javac ' . mainFile . ' && ' . 'java ' . mainExecutable
-	execute 'Start javac ' . mainFile . ' && ' . 'java ' . mainExecutable
+	let runArgs = ''
+	for a in a:000
+		let runArgs .= a . ' '
+	endfor
+	execute 'Start javac ' . expand('%') . ' && javac ' . mainFile . ' && ' . 'java ' . mainExecutable . ' ' . runArgs
 endfunction
 
+" get java mains
 function! JavaMain()
 	" plural of main -> mains
 	let mains = taglist('main')
@@ -45,6 +52,7 @@ function! JavaMain()
 		endif
 	endif
 endfunction
+" }}}
 
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
