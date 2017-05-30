@@ -1,4 +1,7 @@
-if eclim#EclimAvailable()
+if executable('eclimd')  
+	if ! eclim#EclimAvailable()
+		Start! eclimd
+	endif
 	setlocal omnifunc=eclim#java#complete#CodeComplete
 else
 	call plug#load('vim-javacomplete2')
@@ -12,6 +15,9 @@ command! -nargs=* Run call Run(<f-args>)
 
 function! Run(...)
 	let mainFile = JavaMain()
+	if empty(mainFile)
+		return
+	endif
 	let mainExecutable = substitute(mainFile, "\.java$", "", "")
 	
 	let runArgs = ''
@@ -44,7 +50,7 @@ function! JavaMain()
 
 		let userinput = input("\nSelect one candidate: ", '')
 		if empty(userinput)
-			return mains[0]
+			return ''
 		elseif userinput >=0 && userinput < len(mains)
 			return mains[userinput]['filename']
 		else
