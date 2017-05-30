@@ -57,4 +57,3 @@ nnoremap <Space> za<Space>
 
 " open a gnome-terminal instance in pwd
 nnoremap <leader>t :!gnome-terminal &<cr><cr>
-

@@ -1,12 +1,9 @@
-"Plug 'artur-shaik/vim-javacomplete2', { 'on' : [] }
-"augroup load_javacomplete
-	"autocmd!
-	"autocmd! FileType java
-				"\ autocmd! BufEnter * call plug#load('vim-javacomplete2') 
-				"\ | autocmd! load_javacomplete
-"augroup END
-Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
+" use eclim for java
+Plug 'dansomething/vim-eclim' , { 'for': 'java' }
 
-	
+" fall back if eclim server is not running or doesn't exists
+" on system
+Plug 'artur-shaik/vim-javacomplete2', { 'on': [] }
+
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker

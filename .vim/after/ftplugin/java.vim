@@ -1,4 +1,9 @@
-setlocal omnifunc=javacomplete#Complete
+if eclim#EclimAvailable()
+	setlocal omnifunc=eclim#java#complete#CodeComplete
+else
+	call plug#load('vim-javacomplete2')
+	setlocal omnifunc=javacomplete#Complete
+endif
 
 nnoremap <buffer> <leader>r :call Run()<cr>
 
