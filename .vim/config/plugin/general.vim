@@ -567,8 +567,10 @@ Plug 'mhinz/vim-startify'
 Plug 'tyru/open-browser.vim' , { 'on' : 
 			\ ['OpenBrowser',
 			\ 'OpenBrowserSearch',
-			\ 'OpenBrowserSmartSearch']}
+			\ 'OpenBrowserSmartSearch',
+			\ 'QuickRun']}
 
+Plug 'tyru/open-browser.vim' 
 nmap <leader>b :OpenBrowserSmartSearch
 command! -complete=file -nargs=1 OpenBrowserLocalFile execute "OpenBrowser" "file:///" . expand('%:p:h') . '/' . expand('<args>')
 
@@ -603,7 +605,7 @@ let g:openbrowser_browser_commands =
 " }}}
 
 " thinca/vim-quickrun {{{
-Plug 'thinca/vim-quickrun'
+Plug 'thinca/vim-quickrun' , { 'on': 'QuickRun' }
 nnoremap <leader>r :QuickRun<cr>
 nnoremap <expr> <leader>R QuickRunMapping()
 function! QuickRunMapping()
@@ -612,9 +614,8 @@ endfunction
 
 let g:quickrun_config = {
 			\ 'asciidoc': {
-			\ 'command': 'asciidoctor',
-			\ 'cmdopt': '-o -',
-			\ 'outputter': 'browser',
+			\ 'exec': 'x-www-browser %s',
+			\ 'outputter': 'null',
 			\ 'runner': 'vimproc',
 			\},
 			\ 'asciidoc/pdf': {
