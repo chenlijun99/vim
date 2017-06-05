@@ -469,7 +469,7 @@ let g:rooter_silent_chdir = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_resolve_links = 1
 let g:rooter_patterns = ['package.json', '.git/', '.git']
-let g:rooter_targets="*.cpp,*.cxx,*.c,*.hxx,*.hpp,*.java,*.adoc,*.md,*.dot,*.js,*.html,*.css,*.less,*.sass"
+let g:rooter_targets="*.cpp,*.cxx,*.c,*.hxx,*.hpp,*.java,*.py,*.adoc,*.md,*.dot,*.js,*.html,*.css,*.less,*.sass"
 
 " }}}
 
@@ -564,8 +564,14 @@ Plug 'mhinz/vim-startify'
 " }}}
 
 " tyru/open-browser.vim {{{
-Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser.vim' , { 'on' : 
+			\ ['OpenBrowser',
+			\ 'OpenBrowserSearch',
+			\ 'OpenBrowserSmartSearch']}
+
 nmap <leader>b :OpenBrowserSmartSearch
+command! -complete=file -nargs=1 OpenBrowserLocalFile execute "OpenBrowser" "file:///" . expand('%:p:h') . '/' . expand('<args>')
+
 let g:openbrowser_search_engines = extend(
 			\ get(g:, 'openbrowser_search_engines', {}),
 			\ {
@@ -577,6 +583,23 @@ let g:openbrowser_search_engines = extend(
 			\ },
 			\ 'keep'
 			\)
+
+let g:openbrowser_browser_commands =
+			\[
+			\ {"name": "x-www-browser",
+			\  "args": ["{browser}", "{uri}"]},
+			\ {"name": "google-chrome-stable",
+			\  "args": ["{browser}", "{uri}"]},
+			\ {"name": "chromium-browser",
+			\  "args": ["{browser}", "{uri}"]},
+			\ {"name": "firefox",
+			\  "args": ["{browser}", "{uri}"]},
+			\ {"name": "w3m",
+			\  "args": ["{browser}", "{uri}"]},
+			\ {"name": "xdg-open",
+			\  "args": ["{browser}", "{uri}"]},
+			\]
+
 " }}}
 
 " thinca/vim-quickrun {{{
