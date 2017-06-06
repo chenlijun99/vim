@@ -613,6 +613,11 @@ function! QuickRunMapping()
 endfunction
 
 let g:quickrun_config = {
+			\ 'plantuml': {
+			\ 'exec': 'x-www-browser %s',
+			\ 'outputter': 'null',
+			\ 'runner': 'vimproc',
+			\},
 			\ 'asciidoc': {
 			\ 'exec': 'x-www-browser %s',
 			\ 'outputter': 'null',
@@ -631,8 +636,14 @@ let g:quickrun_config = {
 			\ 'outputter': 'browser',
 			\ 'runner': 'vimproc',
 			\},
+			\ 'markdown': {
+			\ 'exec': 'x-www-browser %s',
+			\ 'outputter': 'null',
+			\ 'runner': 'vimproc',
+			\},
 			\}
 " }}}
 
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
+
