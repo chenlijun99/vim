@@ -29,15 +29,6 @@ set nowrap
 " show a vertical line at the 80th column
 set colorcolumn=80
 
-" show the completion as complete as possible
-set completeopt+=longest
-
-" do not use open a preview window of completion (it's laggy)
-set completeopt-=preview
-
-" do not automatically select to first item
-set completeopt+=noselect
-
 " don't close buffer when it's abandoned, just leave it hidden
 set hidden
 
@@ -47,6 +38,18 @@ set timeoutlen=500
 " leave space for echodoc
 set noshowmode
 
+set scrolloff=99
+
+" completion {{{
+" show the completion as complete as possible
+set completeopt+=longest
+
+" do not use open a preview window of completion (it's laggy)
+set completeopt-=preview
+
+" do not automatically select to first item
+set completeopt+=noselect
+" }}}
 
 " Search {{{
 " highlight searched pattern
