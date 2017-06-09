@@ -644,6 +644,13 @@ let g:quickrun_config = {
 			\}
 " }}}
 
+" dominikduda/vim_current_word {{{
+Plug 'dominikduda/vim_current_word'
+let g:vim_current_word#enabled=1
+let g:vim_current_word#highlight_twins = 1
+let g:vim_current_word#highlight_current_word = 1
+" }}}
+"
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
 
