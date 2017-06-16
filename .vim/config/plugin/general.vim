@@ -650,6 +650,14 @@ let g:vim_current_word#enabled=1
 let g:vim_current_word#highlight_twins = 1
 let g:vim_current_word#highlight_current_word = 1
 " }}}
+
+" {{{ cs/alternate-file.vim
+Plug 'cs/alternate-file.vim'
+" }}}
+"
+" {{{ vim-scripts/a.vim
+Plug 'vim-scripts/a.vim', { 'on': 'A' }
+" }}}
 "
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
