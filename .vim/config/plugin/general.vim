@@ -658,6 +658,10 @@ Plug 'cs/alternate-file.vim'
 " {{{ vim-scripts/a.vim
 Plug 'vim-scripts/a.vim', { 'on': 'A' }
 " }}}
+
+" metakirby5/codi.vim {{{
+Plug 'metakirby5/codi.vim', { 'on': ['Codi', 'CodiUpdate'] }
+" }}}
 "
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
