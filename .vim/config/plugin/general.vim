@@ -306,12 +306,7 @@ augroup END
 "}}}
 
 " airblade/vim-gitgutter {{{
-Plug 'airblade/vim-gitgutter' , { 'on' : [] }
-augroup load_vim-gitgutter
-	autocmd!
-	autocmd TextChanged,TextChangedI * call plug#load('vim-gitgutter')
-				\ | autocmd! load_vim-gitgutter
-augroup END
+Plug 'airblade/vim-gitgutter'
 " }}}
 
 " 'ervandew/supertab' {{{
