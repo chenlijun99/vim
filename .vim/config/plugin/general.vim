@@ -656,6 +656,16 @@ Plug 'vim-scripts/a.vim', { 'on': 'A' }
 
 " metakirby5/codi.vim {{{
 Plug 'metakirby5/codi.vim', { 'on': ['Codi', 'CodiUpdate'] }
+let g:codi#log = "./codi.log"
+autocmd! User codi.vim call s:SetCorrectPermissionCodi()
+function s:SetCorrectPermissionCodi()
+	if !has('nvim')
+		if empty(glob('/tmp/cmd'))
+			call system('touch /tmp/cmd')
+		endif
+		call system('chmod u+x /tmp/cmd')
+	endif
+endfunction
 " }}}
 "
 " set modeline
