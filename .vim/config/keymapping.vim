@@ -23,6 +23,8 @@ vnoremap L g_
 onoremap H ^
 onoremap L g_
 
+nnoremap <c-]> g<c-]>
+
 " edit vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
