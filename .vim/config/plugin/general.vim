@@ -148,6 +148,7 @@ function! FzfMainMapping()
 	endif
 endfunction
 
+nnoremap <leader>pf :FzfFiles<cr>
 nnoremap <leader>pt :FzfTags<cr>
 nnoremap <leader>ph :FzfHistory<cr>
 nnoremap <leader>pbc :FzfBCommits<cr>
@@ -656,7 +657,6 @@ Plug 'vim-scripts/a.vim', { 'on': 'A' }
 
 " metakirby5/codi.vim {{{
 Plug 'metakirby5/codi.vim', { 'on': ['Codi', 'CodiUpdate'] }
-let g:codi#log = "./codi.log"
 autocmd! User codi.vim call s:SetCorrectPermissionCodi()
 function s:SetCorrectPermissionCodi()
 	if !has('nvim')
@@ -667,7 +667,11 @@ function s:SetCorrectPermissionCodi()
 	endif
 endfunction
 " }}}
-"
+
+" idanarye/vim-merginal {{{
+Plug 'idanarye/vim-merginal'
+" }}}
+
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
 
