@@ -663,7 +663,7 @@ Plug 'vim-scripts/a.vim', { 'on': 'A' }
 " metakirby5/codi.vim {{{
 Plug 'metakirby5/codi.vim', { 'on': ['Codi', 'CodiUpdate'] }
 autocmd! User codi.vim call s:SetCorrectPermissionCodi()
-function s:SetCorrectPermissionCodi()
+function! s:SetCorrectPermissionCodi()
 	if !has('nvim')
 		if empty(glob('/tmp/cmd'))
 			call system('touch /tmp/cmd')
