@@ -75,15 +75,20 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
-if !exists('g:neocomplete_force_omni_input_patterns')
-	let g:neocomplete_force_omni_input_patterns = {}
+if !exists('g:neocomplete#force_omni_input_patterns')
+	let g:neocomplete#force_omni_input_patterns = {}
 endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete_force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete_force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplete_force_omni_input_patterns.java = '\h\w*\.\w*'
-let g:neocomplete_force_omni_input_patterns.javascript = '[^. \t]\.\w*'
-let g:neocomplete_force_omni_input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+let g:neocomplete#force_omni_input_patterns.c =
+			\ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.cpp =
+			\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.objc =
+			\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+let g:neocomplete#force_omni_input_patterns.objcpp =
+			\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.java = '\h\w*\.\w*'
+let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+let g:neocomplete#force_omni_input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " }}}
 " Shougo/neoinclude.vim {{{
 Plug 'Shougo/neoinclude.vim'

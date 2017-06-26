@@ -6,10 +6,13 @@ let g:cpp_experimental_template_highlight = 1
 let g:cpp_concepts_highlight = 1
 " }}}
 
-" justmao945/vim-clang {{{
-Plug 'justmao945/vim-clang' , { 'for' : 'cpp'}
-let g:clang_cpp_completeopt = 'menuone,noselect'
-let g:clang_diagsopt = '' " disable diagnostic
+" Rip-Rip/clang_complete {{{
+Plug 'Rip-Rip/clang_complete'
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_omnicppcomplete_compliance = 0
+let g:clang_make_default_keymappings = 0
+let g:clang_compilation_database = "./build/"
 " }}}
 
 " qmake {{{
