@@ -40,3 +40,7 @@ To unset this vim configuration, just run
 install.sh --uninstall
 ```
 and the old configuration, if exists, will be moved back.
+
+## Todo
+
+- [ ] Make it work on Windows as well
