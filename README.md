@@ -43,4 +43,4 @@ and the old configuration, if exists, will be moved back.
 
 ## Todo
 
-- [ ] Make it work on Windows as well
+- [x] Make it work on Windows as well
