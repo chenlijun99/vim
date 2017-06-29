@@ -23,7 +23,12 @@ vnoremap L g_
 onoremap H ^
 onoremap L g_
 
+" when pasting in selection mode, don't overwrite register content with
+" selected text
+vnoremap p "_dP
+
 nnoremap <c-]> g<c-]>
+vnoremap <c-]> g<c-]>
 
 " edit vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
