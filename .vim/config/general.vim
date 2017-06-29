@@ -40,6 +40,9 @@ set noshowmode
 
 set scrolloff=99
 
+" for vimdiff use vertical split
+set diffopt+=vertical
+
 " completion {{{
 " show the completion as complete as possible
 set completeopt+=longest
