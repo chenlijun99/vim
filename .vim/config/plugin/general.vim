@@ -227,6 +227,8 @@ nnoremap <leader>gd :Gdiff<cr>
 "}}}
 " christoomey/vim-conflicted {{{
 Plug 'christoomey/vim-conflicted', { 'on': ['Conflicted','GitNextConflict']}
+let g:diffget_local_map = '<leader>gl'
+let g:diffget_upstream_map = '<leader>gu'
 " }}}
 
 " tpope/vim-eunuch {{{
@@ -684,6 +686,7 @@ endfunction
 Plug 'idanarye/vim-merginal'
 " }}}
 
+Plug 'vim-scripts/matchit.zip'
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
 
