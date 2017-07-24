@@ -686,7 +686,14 @@ endfunction
 Plug 'idanarye/vim-merginal'
 " }}}
 
+" vim-scripts/matchit.zip {{{
 Plug 'vim-scripts/matchit.zip'
+"}}}
+
+" int3/vim-extradite {{{
+Plug 'int3/vim-extradite'
+" }}}
+
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
 

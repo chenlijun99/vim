@@ -7,3 +7,7 @@ Plug 'KabbAmine/vCoolor.vim' , { 'for' : ['javascript', 'html', 'css'] }
 let g:vcoolor_map = 'c'
 
 Plug 'gko/vim-coloresque' , { 'for' : ['javascript', 'html', 'css'] }
+
+Plug 'mattn/emmet-vim', { 'for' : ['html','javascript'] }
+let g:user_emmet_leader_key = ',e'
+
