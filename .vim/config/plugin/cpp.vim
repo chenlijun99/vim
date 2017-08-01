@@ -7,7 +7,7 @@ let g:cpp_concepts_highlight = 1
 " }}}
 
 " Rip-Rip/clang_complete {{{
-Plug 'Rip-Rip/clang_complete'
+Plug 'Rip-Rip/clang_complete', { 'for': 'cpp' }
 let g:clang_complete_auto = 0
 let g:clang_auto_select = 0
 let g:clang_omnicppcomplete_compliance = 0

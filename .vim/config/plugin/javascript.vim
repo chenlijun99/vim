@@ -2,7 +2,7 @@ Plug 'ternjs/tern_for_vim' , { 'do' : 'npm install',
 			\'on' : [] }
 augroup load_tern
 	autocmd!
-	autocmd CursorHold * call plug#load('tern_for_vim')
+	autocmd CursorHold *.js call plug#load('tern_for_vim')
 				\ | autocmd! load_tern
 augroup END
 autocmd! User neocomplete call neocomplete#init#enable()
