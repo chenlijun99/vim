@@ -265,7 +265,7 @@ Plug 'scrooloose/nerdtree' , { 'on' :
 			\'SidePanel nerdtree',
 			\'NERDTreeFind',
 			\'NERDTreeClose'] }
-let g:NERDTreeWinSize=20
+let g:NERDTreeWinSize=30
 
 "xuyuanp/nerdtree-git-plugin {{{
 Plug 'xuyuanp/nerdtree-git-plugin' , { 'on' :

@@ -64,3 +64,5 @@ nnoremap <Space> za<Space>
 
 " open a gnome-terminal instance in pwd
 nnoremap <leader>t :!gnome-terminal &<cr><cr>
+
+nnoremap <leader>c :r!zenity --color-selection --show-palette 2> /dev/null<cr>

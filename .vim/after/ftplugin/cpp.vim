@@ -1,7 +1,7 @@
 " compile
-nnoremap <buffer> <leader>b :!g++ %:t -o %:r -std=c++0x -Wall -ggdb<cr>
+nnoremap <buffer> <leader>b :!g++ %:p -o %:p:r -std=c++0x -Wall -ggdb<cr>
 " execute
-nnoremap <buffer> <leader>r :!g++ %:t -o %:r -std=c++0x -Wall<cr>:!./%:r<cr>
+nnoremap <buffer> <leader>r :!g++ %:p -o %:p:r -std=c++0x -Wall<cr>:!./%:r<cr>
 
 "setlocal omnifunc=omni#cpp#complete#Main
 "setlocal tags+=~/.vim/tags/std_tags

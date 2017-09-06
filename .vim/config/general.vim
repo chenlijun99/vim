@@ -107,5 +107,8 @@ set undofile
 
 set list listchars=tab:\▸\ 
 
+set fileencodings=ucs-bom,utf-8,default,latin,gb18030,gbk,gk2312
+
+
 " set modeline 
 " vim: foldlevel=0 foldmethod=marker
