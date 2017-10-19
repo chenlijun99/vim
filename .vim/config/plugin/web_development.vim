@@ -11,3 +11,4 @@ Plug 'gko/vim-coloresque' , { 'for' : ['javascript', 'html', 'css'] }
 Plug 'mattn/emmet-vim', { 'for' : ['html','javascript'] }
 let g:user_emmet_leader_key = ',e'
 
+Plug 'KabbAmine/gulp-vim', { 'for': ['html', 'javascript', 'css']}
