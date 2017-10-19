@@ -236,7 +236,7 @@ Plug 'tpope/vim-eunuch'
 " }}}
 
 " sheerun/vim-polyglot {{{
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 " }}}
 
 " Sidepanel {{{
@@ -647,6 +647,11 @@ let g:quickrun_config = {
 			\ 'runner': 'vimproc',
 			\},
 			\ 'markdown': {
+			\ 'exec': 'x-www-browser %s',
+			\ 'outputter': 'null',
+			\ 'runner': 'vimproc',
+			\},
+			\ 'html': {
 			\ 'exec': 'x-www-browser %s',
 			\ 'outputter': 'null',
 			\ 'runner': 'vimproc',
