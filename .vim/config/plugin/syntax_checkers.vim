@@ -9,7 +9,6 @@ let g:ale_lint_on_enter=0
 let g:ale_lint_on_save=1
 let g:ale_linters = {
 			\ 'javascript': ['jshint'],
-			\ 'cpp': ['clang','gcc'],
 			\ 'java': ['javac'],
 			\ 'html': ['htmlhint']
 \}
