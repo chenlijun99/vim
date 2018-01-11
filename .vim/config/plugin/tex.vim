@@ -1,1 +1,1 @@
-Plug 'vim-latex/vim-latex', { 'for' : ['tex', 'latex', 'plaintex']}
+Plug 'lervag/vimtex', { 'for' : ['tex', 'latex', 'plaintex']}
