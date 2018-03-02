@@ -105,6 +105,10 @@ let &undodir=s:undo_dir
 set undofile
 " }}}
 
+" Terminal {{{
+set termsize=15x80
+" }}}
+
 set list listchars=tab:\▸\ 
 
 set fileencodings=ucs-bom,utf-8,default,latin,gb18030,gbk,gk2312

@@ -244,7 +244,7 @@ Plug 'tpope/vim-eunuch'
 " }}}
 
 " sheerun/vim-polyglot {{{
-"Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 " }}}
 
 " Sidepanel {{{
