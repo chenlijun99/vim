@@ -1,20 +1,51 @@
 if has('nvim')
 	" Shougo/deoplete.nvim {{{
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'Shougo/deoplete.nvim', {
+				\ 'do': ':UpdateRemotePlugins',
+				\ 'on': []
+				\}
+
+
+	let g:deoplete#omni#input_patterns = {}
+	let g:deoplete#omni#input_patterns.c =
+				\ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+	let g:deoplete#omni#input_patterns.cpp =
+				\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+	let g:deoplete#omni#input_patterns.objc =
+				\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+	let g:deoplete#omni#input_patterns.objcpp =
+				\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+	let g:deoplete#omni#input_patterns.javascript = '[^. \t]\.\w*'
+	let g:deoplete#omni#input_patterns.perl = 
+				\ '\h\w*->\h\w*\|\h\w*::'
+	let g:deoplete#omni#input_patterns.ruby =
+				\ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
+	let g:deoplete#omni#input_patterns.java =
+				\ '[^. *\t]\.\w*'
+	let g:deoplete#omni#input_patterns.php =
+				\ '\w+|[^. \t]->\w*|\w+::\w*'
+
 	let g:deoplete#enable_at_startup = 1
+	let g:deoplete#omni#functions = {}
+	let g:deoplete#omni#functions.ruby = 'rubycomplete#Complete'
+	let g:deoplete#omni#functions.javascript = [
+				\ 'tern#Complete',
+				\ 'jspc#omni'
+				\]
+
+	" <C-h>, <BS>: close popup and delete backword char.
+	inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+	inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+
+	augroup load_deoplete
+		autocmd!
+		autocmd InsertEnter * call plug#load('deoplete.nvim')
+					\ | autocmd! load_deoplete
+	augroup END
 	" }}}
 else
 	"Shougo/vimproc.vim {{{
 	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-	"}}}
-	"Shougo/echodoc.vim {{{
-	Plug 'Shougo/echodoc.vim', { 'on' : [] }
-	let g:echodoc_enable_at_startup=1
-	augroup load_echodoc
-		autocmd!
-		autocmd InsertEnter * call plug#load('echodoc.vim')
-					\ | autocmd! load_echodoc
-	augroup END
 	"}}}
 	" {{{ Shougo/neocomplete
 	if has("lua")
@@ -54,22 +85,8 @@ else
 		inoremap <expr><C-g>     neocomplete#undo_completion()
 		inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-		" Recommended key-mappings.
-		" <CR>: close popup and save indent.
-		inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-		function! s:my_cr_function()
-			return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-			" For no inserting <CR> key.
-			"return pumvisible() ? "\<C-y>" : "\<CR>"
-		endfunction
-		" <TAB>: completion.
-		inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-		inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
-		" <C-h>, <BS>: close popup and delete backword char.
 		inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 		inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-		" Close popup by <Space>.
-		"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
 		" AutoComplPop like behavior.
 		"let g:neocomplete#enable_auto_select = 1
@@ -98,52 +115,77 @@ else
 		let g:neocomplete#force_omni_input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 	endif
 	" }}}
-	" {{{ Shougo/neosnippet
-	Plug 'Shougo/neosnippet' , { 'on' : [] }
-	Plug 'Shougo/neosnippet-snippets'
-	augroup load_neosnippet
-		autocmd!
-		autocmd InsertEnter * call plug#load('neosnippet')
-					\ | autocmd! load_neosnippet
-	augroup END
-
-	autocmd! User neosnippet call neosnippet#init#_initialize()
-
-	let g:neosnippet#snippets_directory = ['~/.vim/snippets/']
-	" Plugin key-mappings.
-	" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-	imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-	smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-	xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-	" SuperTab like snippets behavior.
-	" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-	imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-	"imap <expr><TAB>
-	" \ pumvisible() ? "\<C-n>" :
-	" \ neosnippet#expandable_or_jumpable() ?
-	" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-	smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-				\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-	" For conceal markers.
-	"if has('conceal')
-	"set conceallevel=2 concealcursor=niv
-	"endif
-	" }}}
 endif
 
-" autozimu/LanguageClient-neovim {{{
-Plug 'autozimu/LanguageClient-neovim', {
-			\ 'branch': 'next',
-			\ 'do': 'bash install.sh',
-			\ }
+" mappings {{{
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+	return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+	" For no inserting <CR> key.
+	"return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
 
-let g:LanguageClient_serverCommands = {
-			\ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-			\ 'javascript': ['javascript-typescript-stdio'],
-			\ 'javascript.jsx': ['javascript-typescript-stdio'],
-			\ }
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+" }}}
+
+" {{{ Shougo/neosnippet
+Plug 'Shougo/neosnippet' , { 'on' : [] }
+Plug 'Shougo/neosnippet-snippets'
+augroup load_neosnippet
+	autocmd!
+	autocmd InsertEnter * call plug#load('neosnippet')
+				\ | autocmd! load_neosnippet
+augroup END
+
+autocmd! User neosnippet call neosnippet#init#_initialize()
+
+let g:neosnippet#snippets_directory = ['~/.vim/snippets/']
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+"if has('conceal')
+"set conceallevel=2 concealcursor=niv
+"endif
+" }}}
+"Shougo/echodoc.vim {{{
+Plug 'Shougo/echodoc.vim', { 'on' : [] }
+let g:echodoc_enable_at_startup=1
+augroup load_echodoc
+	autocmd!
+	autocmd InsertEnter * call plug#load('echodoc.vim')
+				\ | autocmd! load_echodoc
+augroup END
+"}}}
+
+" autozimu/LanguageClient-neovim {{{
+"Plug 'autozimu/LanguageClient-neovim', {
+			"\ 'branch': 'next',
+			"\ 'do': 'bash install.sh',
+			"\ }
+
+"let g:LanguageClient_serverCommands = {
+			"\ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+			"\ 'javascript': ['javascript-typescript-stdio'],
+			"\ 'javascript.jsx': ['javascript-typescript-stdio'],
+			"\ }
 
 " }}}
 " set modeline

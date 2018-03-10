@@ -560,16 +560,12 @@ endfunction
 " }}}
 
 " idanarye/vim-merginal {{{
-Plug 'idanarye/vim-merginal'
+Plug 'idanarye/vim-merginal', { 'on': ['Merginal', 'MerginalClose', 'MerginalToggle'] }
 " }}}
 
-" vim-scripts/matchit.zip {{{
-Plug 'vim-scripts/matchit.zip'
-"}}}
-
-" int3/vim-extradite {{{
-Plug 'int3/vim-extradite'
+" embear/vim-localvimrc {{{
+Plug 'embear/vim-localvimrc'
+let g:localvimrc_ask=0
 " }}}
-
 " set modeline
 " vim: foldlevel=0 foldmethod=marker

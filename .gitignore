@@ -1,10 +1,13 @@
-/.vim/bundle/*
+.vim/bundle/
+.vim/node_modules/
+.vim/spell/
+
+undo/
 
 # ignore vim swap files
 *.swp
 .netrwhist
 */.netrwhist
 
-tags
+**/tags
 
-undo/
