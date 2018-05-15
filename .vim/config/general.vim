@@ -110,9 +110,6 @@ set undofile
 " }}}
 
 " Terminal {{{
-if !has("nvim")
-	set termsize=15x80
-endif
 " }}}
 
 set list listchars=tab:\▸\ 
