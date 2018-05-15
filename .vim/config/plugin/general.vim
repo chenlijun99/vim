@@ -350,8 +350,8 @@ Plug 'airblade/vim-rooter'
 let g:rooter_silent_chdir = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_resolve_links = 1
-let g:rooter_patterns = ['package.json', '.git/', '.git']
-let g:rooter_targets="*.cpp,*.cxx,*.c,*.hxx,*.hpp,*.java,*.py,*.adoc,*.md,*.dot,*.js,*.html,*.css,*.less,*.sass"
+let g:rooter_patterns = ['package.json', '.git/', '.git', 'composer.json', 'Doxyfile']
+let g:rooter_targets="*.cpp,*.cxx,*.c,*.hxx,*.hpp,*.java,*.py,*.adoc,*.md,*.dot,*.js,*.html,*.css,*.less,*.sass,*.php"
 
 " }}}
 

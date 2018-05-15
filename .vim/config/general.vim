@@ -1,6 +1,8 @@
 " enable vim features, which are not supported by vi
 set nocompatible
 
+set lazyredraw
+
 " set backspace behavior as we would normally expect
 set backspace=indent,eol,start
 
@@ -39,6 +41,9 @@ set timeoutlen=500
 set noshowmode
 
 set scrolloff=99
+
+" draw always signcolumn
+set signcolumn=yes
 
 " for vimdiff use vertical split
 set diffopt+=vertical
@@ -82,7 +87,6 @@ set guifont=DejaVu\ Sans\ Mono\ 12
 "}}}
 
 " Folding {{{
-
 " enable folding
 set foldenable
 set foldmethod=indent
