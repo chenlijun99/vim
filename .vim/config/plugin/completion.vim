@@ -91,13 +91,6 @@ else
 		" AutoComplPop like behavior.
 		"let g:neocomplete#enable_auto_select = 1
 
-		" Enable omni completion.
-		"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-		"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-		"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-		"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-		"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
 		" Enable heavy omni completion.
 		if !exists('g:neocomplete#force_omni_input_patterns')
 			let g:neocomplete#force_omni_input_patterns = {}
@@ -176,17 +169,33 @@ augroup END
 "}}}
 
 " autozimu/LanguageClient-neovim {{{
-"Plug 'autozimu/LanguageClient-neovim', {
-			"\ 'branch': 'next',
-			"\ 'do': 'bash install.sh',
-			"\ }
+Plug 'autozimu/LanguageClient-neovim', {
+			\ 'branch': 'next',
+			\ 'do': 'bash install.sh',
+			\ }, 
 
-"let g:LanguageClient_serverCommands = {
-			"\ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-			"\ 'javascript': ['javascript-typescript-stdio'],
-			"\ 'javascript.jsx': ['javascript-typescript-stdio'],
-			"\ }
+let g:LanguageClient_serverCommands = {
+			\ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
+			\ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
+			\ 'php': ['php-language-server.php'],
+			\ }
 
+
+" Enable omni completion.
+let g:LanguageClient_autoStart = 1
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 " }}}
+
+autocmd! FileType cpp setlocal omnifunc=LanguageClient#complete 
+
+autocmd! FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd! FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd! FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+
 " set modeline
 " vim: foldlevel=0 foldmethod=marker

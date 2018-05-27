@@ -559,13 +559,10 @@ function! s:SetCorrectPermissionCodi()
 endfunction
 " }}}
 
-" idanarye/vim-merginal {{{
-Plug 'idanarye/vim-merginal', { 'on': ['Merginal', 'MerginalClose', 'MerginalToggle'] }
-" }}}
-
 " embear/vim-localvimrc {{{
 Plug 'embear/vim-localvimrc'
 let g:localvimrc_ask=0
 " }}}
+
 " set modeline
 " vim: foldlevel=0 foldmethod=marker

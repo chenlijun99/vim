@@ -6,6 +6,3 @@ augroup load_syntax
 				\| hi CurrentWordTwins ctermbg=239
 				\| autocmd! load_syntax
 augroup end
-
-
-
