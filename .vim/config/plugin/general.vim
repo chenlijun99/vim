@@ -347,10 +347,17 @@ map mm ms
 
 " 'airblade/vim-rooter' {{{
 Plug 'airblade/vim-rooter'
-let g:rooter_silent_chdir = 1
+let g:rooter_silent_chdir = 0
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_resolve_links = 1
-let g:rooter_patterns = ['package.json', '.git/', '.git', 'composer.json', 'Doxyfile']
+let g:rooter_patterns = [
+			\ '.gitignore',
+			\ '.git',
+			\ '.git/',
+			\ 'package.json',
+			\ 'composer.json',
+			\ 'Doxyfile'
+			\ ]
 let g:rooter_targets="*.cpp,*.cxx,*.c,*.hxx,*.hpp,*.java,*.py,*.adoc,*.md,*.dot,*.js,*.html,*.css,*.less,*.sass,*.php"
 
 " }}}
@@ -566,6 +573,10 @@ Plug 'idanarye/vim-merginal', { 'on': ['Merginal', 'MerginalClose', 'MerginalTog
 " embear/vim-localvimrc {{{
 Plug 'embear/vim-localvimrc'
 let g:localvimrc_ask=0
+" }}}
+
+" roman/golden-ratio {{{
+Plug 'roman/golden-ratio'
 " }}}
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
