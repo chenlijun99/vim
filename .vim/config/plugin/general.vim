@@ -121,13 +121,6 @@ Plug 'majutsushi/tagbar', { 'on' :
 			\'TagbarClose']}
 let g:tagbar_left=0
 let g:tagbar_width=20
-Plug 'mtscout6/vim-tagbar-css' , { 'on' : [] }
-augroup load_tagbar_css
-	autocmd!
-	autocmd FileType css
-				\ autocmd User tagbar call plug#load('vim-tagbar-css')
-				\ | autocmd! load_tagbar_css
-augroup END
 " }}}
 
 " 'scrooloose/nerdtree' {{{

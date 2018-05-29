@@ -110,21 +110,6 @@ else
 	" }}}
 endif
 
-" mappings {{{
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-	return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-	" For no inserting <CR> key.
-	"return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
-" }}}
-
 " {{{ Shougo/neosnippet
 Plug 'Shougo/neosnippet' , { 'on' : [] }
 Plug 'Shougo/neosnippet-snippets'
@@ -184,18 +169,39 @@ let g:LanguageClient_serverCommands = {
 " Enable omni completion.
 let g:LanguageClient_autoStart = 1
 
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> <space>h :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> <space>d :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <space>r :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> <space>* :call LanguageClient_textDocument_references()<CR>
+nnoremap <silent> <space># :call LanguageClient_textDocument_references()<CR>
+nnoremap <silent> <space>f :call LanguageClient_textDocument_formatting()<CR>
+vnoremap <silent> <space>f :call LanguageClient_textDocument_rangeFormatting()<CR>
+vnoremap <silent> <space>s :call LanguageClient_textDocument_documentSymbol()<CR>
+vnoremap <silent> <space>S :call LanguageClient_workspace_symbol()<CR>
 " }}}
 
 autocmd! FileType cpp setlocal omnifunc=LanguageClient#complete 
+autocmd! FileType php setlocal omnifunc=LanguageClient#complete 
 
 autocmd! FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd! FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd! FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+	return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+	" For no inserting <CR> key.
+	"return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
