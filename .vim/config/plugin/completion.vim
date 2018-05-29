@@ -91,13 +91,6 @@ else
 		" AutoComplPop like behavior.
 		"let g:neocomplete#enable_auto_select = 1
 
-		" Enable omni completion.
-		"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-		"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-		"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-		"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-		"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
 		" Enable heavy omni completion.
 		if !exists('g:neocomplete#force_omni_input_patterns')
 			let g:neocomplete#force_omni_input_patterns = {}
@@ -116,21 +109,6 @@ else
 	endif
 	" }}}
 endif
-
-" mappings {{{
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-	return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-	" For no inserting <CR> key.
-	"return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
-" }}}
 
 " {{{ Shougo/neosnippet
 Plug 'Shougo/neosnippet' , { 'on' : [] }
@@ -176,17 +154,54 @@ augroup END
 "}}}
 
 " autozimu/LanguageClient-neovim {{{
-"Plug 'autozimu/LanguageClient-neovim', {
-			"\ 'branch': 'next',
-			"\ 'do': 'bash install.sh',
-			"\ }
+Plug 'autozimu/LanguageClient-neovim', {
+			\ 'branch': 'next',
+			\ 'do': 'bash install.sh',
+			\ }, 
 
-"let g:LanguageClient_serverCommands = {
-			"\ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-			"\ 'javascript': ['javascript-typescript-stdio'],
-			"\ 'javascript.jsx': ['javascript-typescript-stdio'],
-			"\ }
+let g:LanguageClient_serverCommands = {
+			\ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
+			\ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
+			\ 'php': ['php-language-server.php'],
+			\ }
 
+
+" Enable omni completion.
+let g:LanguageClient_autoStart = 1
+
+nnoremap <silent> <space>h :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> <space>d :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <space>r :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> <space>* :call LanguageClient_textDocument_references()<CR>
+nnoremap <silent> <space># :call LanguageClient_textDocument_references()<CR>
+nnoremap <silent> <space>f :call LanguageClient_textDocument_formatting()<CR>
+vnoremap <silent> <space>f :call LanguageClient_textDocument_rangeFormatting()<CR>
+vnoremap <silent> <space>s :call LanguageClient_textDocument_documentSymbol()<CR>
+vnoremap <silent> <space>S :call LanguageClient_workspace_symbol()<CR>
 " }}}
+
+autocmd! FileType cpp setlocal omnifunc=LanguageClient#complete 
+autocmd! FileType php setlocal omnifunc=LanguageClient#complete 
+
+autocmd! FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd! FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd! FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+	return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+	" For no inserting <CR> key.
+	"return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+
 " set modeline
 " vim: foldlevel=0 foldmethod=marker

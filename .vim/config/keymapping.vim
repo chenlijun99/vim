@@ -5,10 +5,8 @@ inoremap jk <Esc>
 cnoremap jk <c-c>
 
 " in-line scrolling
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
+noremap j gj
+noremap k gk
 
 " when jumping always put cursor at center of screen
 nnoremap <c-d> <c-d>zz
@@ -16,12 +14,8 @@ nnoremap <c-u> <c-u>zz
 
 " H jump to start-of-line
 " L jump to end-of-line
-nnoremap H ^
-nnoremap L g_
-vnoremap H ^
-vnoremap L g_
-onoremap H ^
-onoremap L g_
+noremap H ^
+noremap L g_
 
 " when pasting in selection mode, don't overwrite register content with
 " selected text
@@ -59,9 +53,4 @@ nnoremap <leader>sp :execute printf("source %s/%s.vim",g:pluginFilesDir, &filety
 " sudo write
 command! W :w !sudo tee %
 
-" use space to toggle folding
-nnoremap <Space> za<Space>
-
 nnoremap <leader>t :terminal<cr>
-
-nnoremap <leader>c :r!zenity --color-selection --show-palette 2> /dev/null<cr>
