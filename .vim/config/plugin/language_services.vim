@@ -153,18 +153,12 @@ augroup load_echodoc
 augroup END
 "}}}
 
+
 " autozimu/LanguageClient-neovim {{{
 Plug 'autozimu/LanguageClient-neovim', {
 			\ 'branch': 'next',
 			\ 'do': 'bash install.sh',
 			\ }, 
-
-let g:LanguageClient_serverCommands = {
-			\ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
-			\ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
-			\ 'php': ['php-language-server.php'],
-			\ }
-
 
 " Enable omni completion.
 let g:LanguageClient_autoStart = 1
@@ -180,14 +174,47 @@ vnoremap <silent> <space>s :call LanguageClient_textDocument_documentSymbol()<CR
 vnoremap <silent> <space>S :call LanguageClient_workspace_symbol()<CR>
 " }}}
 
+
+"w0rp/ale {{{
+Plug 'w0rp/ale'
+let g:ale_enabled=1
+let g:ale_set_loclist=1
+let g:ale_open_list=0
+let g:ale_sign_column_always=1
+let g:ale_lint_on_text_changed=0
+let g:ale_lint_on_enter=0
+let g:ale_lint_on_save=1
+let g:ale_linters = {
+			\ 'javascript': ['jshint'],
+			\ 'java': ['javac'],
+			\ 'html': ['htmlhint']
+			\}
+"}}}
+
+autocmd! FileType c setlocal omnifunc=LanguageClient#complete 
 autocmd! FileType cpp setlocal omnifunc=LanguageClient#complete 
 autocmd! FileType php setlocal omnifunc=LanguageClient#complete 
 
-autocmd! FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd! FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd! FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" setup language server
+let g:LanguageClient_serverCommands = {
+			\ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
+			\ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
+			\ 'php': ['php-language-server.php'],
+			\ }
+
+" disable ale for filetypes with language server available
+let g:ale_pattern_options = {
+			\	'.*\.c': {
+			\	'ale_enabled': 0
+			\	},
+			\	'.*\.cpp': {
+			\	'ale_enabled': 0
+			\	},
+			\	'.*\.php': {
+			\	'ale_enabled': 0
+			\	}
+			\}
+
 
 
 " Recommended key-mappings.
