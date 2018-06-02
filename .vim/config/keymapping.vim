@@ -52,5 +52,3 @@ nnoremap <leader>sp :execute printf("source %s/%s.vim",g:pluginFilesDir, &filety
 
 " sudo write
 command! W :w !sudo tee %
-
-nnoremap <leader>t :terminal<cr>

@@ -1,3 +1,7 @@
+	"Shougo/vimproc.vim {{{
+	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+	"}}}
+
 if has('nvim')
 	" Shougo/deoplete.nvim {{{
 	Plug 'Shougo/deoplete.nvim', {
@@ -44,9 +48,6 @@ if has('nvim')
 	augroup END
 	" }}}
 else
-	"Shougo/vimproc.vim {{{
-	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-	"}}}
 	" {{{ Shougo/neocomplete
 	if has("lua")
 		Plug 'Shougo/neocomplete' , { 'on' : [] }
@@ -191,10 +192,6 @@ let g:ale_linters = {
 			\}
 "}}}
 
-autocmd! FileType c setlocal omnifunc=LanguageClient#complete 
-autocmd! FileType cpp setlocal omnifunc=LanguageClient#complete 
-autocmd! FileType php setlocal omnifunc=LanguageClient#complete 
-
 " setup language server
 let g:LanguageClient_serverCommands = {
 			\ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
@@ -202,20 +199,14 @@ let g:LanguageClient_serverCommands = {
 			\ 'php': ['php-language-server.php'],
 			\ }
 
-" disable ale for filetypes with language server available
-let g:ale_pattern_options = {
-			\	'.*\.c': {
-			\	'ale_enabled': 0
-			\	},
-			\	'.*\.cpp': {
-			\	'ale_enabled': 0
-			\	},
-			\	'.*\.php': {
-			\	'ale_enabled': 0
-			\	}
-			\}
-
-
+augroup language_services
+	autocmd!
+	" set LanguageClient#complete as omnifunc for filetypes having language
+	" server available
+	autocmd! FileType c,cpp,php setlocal omnifunc=LanguageClient#complete 
+	" disable ale for filetypes with language server available
+	autocmd! FileType c,cpp,php let b:ale_enabled=0
+augroup END
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.

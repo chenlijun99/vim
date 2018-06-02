@@ -63,9 +63,7 @@ Plug 'junegunn/vim-slash'
 " junegunn/rainbow_parentheses.vim {{{
 Plug 'junegunn/rainbow_parentheses.vim'
 " }}}
-" junegunn/vim-easy-align {{{
-Plug 'junegunn/vim-easy-align'
-" }}}
+
 
 "tpope/vim-dispatch {{{
 Plug 'tpope/vim-dispatch', { 'on': ['Dispatch', 'Make', 'Start'] }
