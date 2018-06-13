@@ -1,18 +1,20 @@
 #!/bin/bash
 
 SCRIPT_DIR="$( cd "$(dirname "$0" )" && pwd )"
-BACKUP_DIR=".backup"
+BACKUP_DIR="$SCRIPT_DIR/.backup"
+mkdir -p $BACKUP_DIR
 
 function install()
 {
-	if [[ -f "$HOME/.vimrc" ]]; then
-		mv -vi "$HOME/.vimrc" "$SCRIPT_DIR/$BACKUP_DIR/.vimrc"
+	mv -vi "$HOME/.vimrc" "$BACKUP_DIR/.vimrc"
+	if [[ $? -eq 0 ]]; then
+		ln -s "$SCRIPT_DIR/.vimrc" "$HOME/.vimrc"
 	fi
-	if [[ -d "$HOME/.vim" ]]; then
-		mv -vi "$HOME/.vim" "$SCRIPT_DIR/$BACKUP_DIR/.vim"
+	mv -vi "$HOME/.vim" "$BACKUP_DIR/.vim"
+	if [[ $? -eq 0 ]]; then
+		ln -s "$SCRIPT_DIR/.vim" "$HOME/.vim"
 	fi
-	ln -s "$SCRIPT_DIR/.vimrc" "$HOME/.vimrc"
-	ln -s "$SCRIPT_DIR/.vim" "$HOME/.vim"
+	
 	vim -c "PlugInstall" -c "qa!"
 }
 
@@ -24,11 +26,11 @@ function uninstall()
 	if [[ -h "$HOME/.vim" ]]; then
 		rm "$HOME/.vim"
 	fi
-	if [[ -f "$SCRIPT_DIR/$BACKUP_DIR/.vimrc" ]]; then
-		mv -vi "$SCRIPT_DIR/$BACKUP_DIR/.vimrc" "$HOME/.vimrc"
+	if [[ -a "$BACKUP_DIR/.vimrc" ]]; then
+		mv -vi "$BACKUP_DIR/.vimrc" "$HOME/.vimrc"
 	fi
-	if [[ -d "$SCRIPT_DIR/$BACKUP_DIR/.vim" ]]; then
-		mv -vi "$SCRIPT_DIR/$BACKUP_DIR/.vim" "$HOME/.vim"
+	if [[ -a "$BACKUP_DIR/.vim" ]]; then
+		mv -vi "$BACKUP_DIR/.vim" "$HOME/.vim"
 	fi
 }
 
