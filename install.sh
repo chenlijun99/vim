@@ -6,15 +6,20 @@ mkdir -p $BACKUP_DIR
 
 function install()
 {
-	mv -vi "$HOME/.vimrc" "$BACKUP_DIR/.vimrc"
+	if [[ -a "$HOME/.vimrc"  ]]; then
+		mv -vi "$HOME/.vimrc" "$BACKUP_DIR/.vimrc"
+	fi
 	if [[ $? -eq 0 ]]; then
 		ln -s "$SCRIPT_DIR/.vimrc" "$HOME/.vimrc"
 	fi
-	mv -vi "$HOME/.vim" "$BACKUP_DIR/.vim"
+
+	if [[ -a "$HOME/.vim"  ]]; then
+		mv -vi "$HOME/.vim" "$BACKUP_DIR/.vim"
+	fi
 	if [[ $? -eq 0 ]]; then
 		ln -s "$SCRIPT_DIR/.vim" "$HOME/.vim"
 	fi
-	
+
 	vim -c "PlugInstall" -c "qa!"
 }
 
