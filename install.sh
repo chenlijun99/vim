@@ -6,14 +6,13 @@ mkdir -p $BACKUP_DIR
 
 function install()
 {
-	if [[ -a "$HOME/.vimrc"  ]]; then
+	if [[ -a "$HOME/.vimrc" ]]; then
 		mv -vi "$HOME/.vimrc" "$BACKUP_DIR/.vimrc"
 	fi
 	if [[ $? -eq 0 ]]; then
 		ln -s "$SCRIPT_DIR/.vimrc" "$HOME/.vimrc"
 	fi
-
-	if [[ -a "$HOME/.vim"  ]]; then
+	if [[ -a "$HOME/.vim" ]]; then
 		mv -vi "$HOME/.vim" "$BACKUP_DIR/.vim"
 	fi
 	if [[ $? -eq 0 ]]; then

@@ -380,15 +380,6 @@ let g:zv_file_types = {
 let g:zv_get_docset_by = ['ft', 'ext']
 "}}}
 
-" {{{ 'vim-scripts/fcitx.vim'
-Plug 'vim-scripts/fcitx.vim' , { 'on' : [] }
-augroup load_fcitx
-	autocmd!
-	autocmd InsertEnter * call plug#load('fcitx.vim')
-				\ | autocmd! load_fcitx
-augroup END
-" }}}
-
 " Chiel92/vim-autoformat {{{
 Plug 'Chiel92/vim-autoformat' , { 'on' : 'Autoformat' }
 " }}}
