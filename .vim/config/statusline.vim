@@ -11,10 +11,11 @@ let g:lightline = {
       \   'readonly': 'LightlineReadonly',
       \   'modified': 'LightlineModified',
       \   'filename': 'LightlineFilename',
-	  \   'gutentags': 'gutentags#statusline'
+	  \   'gutentags': 'gutentags#statusline',
+	  \   'language_server': 'LanguageClient#statusLine'
       \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ 'separator': { 'left': '|', 'right': '|' },
+      \ 'subseparator': { 'left': '-', 'right': '-' }
       \ }
 
 function! LightlineModified()
@@ -33,7 +34,7 @@ function! LightlineReadonly()
   if &filetype == "help"
     return ""
   elseif &readonly
-    return "⭤"
+    return "RO"
   else
     return ""
   endif

@@ -1,1 +1,1 @@
-Plug 'othree/xml.vim' , { 'for': ['xml', 'html'] }
+Plug 'othree/xml.vim' , { 'for': ['xml', 'html', 'markdown'] }

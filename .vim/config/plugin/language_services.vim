@@ -197,15 +197,24 @@ let g:LanguageClient_serverCommands = {
 			\ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
 			\ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
 			\ 'php': ['php-language-server.php'],
+			\ 'typescript': ['tsserver'],
+			\ 'javascript': ['tsserver'],
+			\ 'javascript.jsx': ['tsserver']
 			\ }
 
 augroup language_services
 	autocmd!
-	" set LanguageClient#complete as omnifunc for filetypes having language
-	" server available
-	autocmd! FileType c,cpp,php setlocal omnifunc=LanguageClient#complete 
-	" disable ale for filetypes with language server available
-	autocmd! FileType c,cpp,php let b:ale_enabled=0
+	" set LanguageClient#complete as omnifunc and disable ale
+	" for filetypes having language server available
+	autocmd FileType 
+				\ c,
+				\ cpp,
+				\ php,
+				\ typescript,
+				\ javascript,
+				\ javascript.jsx
+				\ setlocal omnifunc=LanguageClient#complete |
+				\ let b:ale_enabled=0
 augroup END
 
 " Recommended key-mappings.
