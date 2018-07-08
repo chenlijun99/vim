@@ -12,14 +12,13 @@ function install()
 	if [[ $? -eq 0 ]]; then
 		ln -s "$SCRIPT_DIR/.vimrc" "$HOME/.vimrc"
 	fi
-	
 	if [[ -a "$HOME/.vim" ]]; then
 		mv -vi "$HOME/.vim" "$BACKUP_DIR/.vim"
 	fi
 	if [[ $? -eq 0 ]]; then
 		ln -s "$SCRIPT_DIR/.vim" "$HOME/.vim"
 	fi
-	
+
 	vim -c "PlugInstall" -c "qa!"
 }
 
