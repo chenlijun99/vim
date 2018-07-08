@@ -206,15 +206,9 @@ augroup language_services
 	autocmd!
 	" set LanguageClient#complete as omnifunc and disable ale
 	" for filetypes having language server available
-	autocmd FileType 
-				\ c,
-				\ cpp,
-				\ php,
-				\ typescript,
-				\ javascript,
-				\ javascript.jsx
-				\ setlocal omnifunc=LanguageClient#complete |
-				\ let b:ale_enabled=0
+	" NOTE: no spaces between each filetype
+	autocmd FileType c,cpp,,php,typescript,javascript,javascript.jsx
+				\ setlocal omnifunc=LanguageClient#complete | let b:ale_enabled=0
 augroup END
 
 " Recommended key-mappings.
