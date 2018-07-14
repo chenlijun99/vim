@@ -1,27 +1,36 @@
 # Vim
 
-My vim configurations
+My vim/Neovim configurations
 
 ## Requirement
 
 * vim >8.0 compiled with python and lua support \\
 if you use ubuntu >16.04, then run following commands
-
-```
-sudo add-apt-repository ppa:jonathonf/vim
-sudo apt-get update
-sudo apt-get install vim
-```
+    ```
+    sudo add-apt-repository ppa:jonathonf/vim
+    sudo apt-get update
+    sudo apt-get install vim
+    ```
 otherwise you could try to compile vim from source following this
 [tutorial](https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source)
+* or Neovim
+
+
+
+## Optional plugins
 * **git** for plugin management and other plugin (fugitive, vim-gitgutter)
 * **exuberant-ctags** to provide a outline sidebar
-* **npm** and **nodejs** installed for **javascript** completion (as newer version of these
-is preferable, as with older versions *tern* fails to install)
-* **jdk-8** for **java** completion
-* **clang** for **c-family language** completion
 * Look [here](https://github.com/w0rp/ale#supported-languages) for specific linters that you'd have
 for some language
+
+### Language server integration
+
+For the following languages, instead of `ale`, language server are used.
+You should manage to get them installed on your system.
+
+* c/cpp (cquery)
+* php (php-language-server)
+* javascript/typescript (tsserver)
 
 ## Installation
 

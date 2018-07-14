@@ -107,6 +107,9 @@ Plug 'tpope/vim-eunuch'
 
 " sheerun/vim-polyglot {{{
 Plug 'sheerun/vim-polyglot'
+" workaround to issue #162
+" I don't want all js files to be treated as jsx files
+let g:jsx_ext_required = 1
 " }}}
 
 " Sidepanel {{{
