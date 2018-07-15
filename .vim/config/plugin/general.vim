@@ -72,7 +72,6 @@ Plug 'junegunn/vim-slash'
 Plug 'junegunn/rainbow_parentheses.vim'
 " }}}
 
-
 "tpope/vim-dispatch {{{
 Plug 'tpope/vim-dispatch', { 'on': ['Dispatch', 'Make', 'Start'] }
 "}}}
@@ -85,18 +84,6 @@ Plug 'tpope/vim-surround',
 			\ '<Plug>Ysurround',  '<Plug>YSurround', '<Plug>Yssurround',
 			\ '<Plug>YSsurround', '<Plug>VSurround', '<Plug>VgSurround'] }
 xmap S <Plug>VSurround
-"}}}
-"tpope/vim-fugitive {{{
-Plug 'tpope/vim-fugitive' , { 'on' : [] }
-augroup load_fugitive
-	autocmd!
-	autocmd BufEnter * call plug#load('vim-fugitive')
-				\ | autocmd! load_fugitive
-augroup END
-autocmd! User vim-fugitive call fugitive#detect(expand('%:p')) 
-
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gd :Gdiff<cr>
 "}}}
 " tpope/vim-abolish {{{
 Plug 'tpope/vim-abolish',
