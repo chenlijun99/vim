@@ -5,6 +5,7 @@
 " \______  /___|  /\___  >___|  /          /\ \_/ |__|__|_|  /__|    \___  >
 "        \/     \/     \/     \/           \/              \/            \/ 
 
+source ~/.vim/config/global.vim
 source ~/.vim/config/settings.vim
 source ~/.vim/config/keymapping.vim
 source ~/.vim/config/plugin.vim

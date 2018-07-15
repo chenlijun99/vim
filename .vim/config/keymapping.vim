@@ -47,8 +47,8 @@ nnoremap <leader>ss :execute printf("source ~/.vim/snippets/%s.snip", &filetype)
 " edit plugins
 nnoremap <leader>eP :execute printf("vsplit %s/%s.vim",g:pluginFilesDir, 'general')<cr>
 nnoremap <leader>sP :execute printf("vsplit %s/%s.vim",g:pluginFilesDir, 'general')<cr>
-nnoremap <leader>ep :execute printf("vsplit %s/%s.vim",g:pluginFilesDir, &filetype)<cr>
-nnoremap <leader>sp :execute printf("source %s/%s.vim",g:pluginFilesDir, &filetype)<cr>
+nnoremap <leader>ep :execute printf("vsplit %s/%s.vim",g:languageSpecificPluginFilesDir, &filetype)<cr>
+nnoremap <leader>sp :execute printf("source %s/%s.vim",g:languageSpecificPluginFilesDir, &filetype)<cr>
 
 " sudo write
 command! W :w !sudo tee %
