@@ -1,3 +1,11 @@
+" NOTE: localvimrc plugin has to stay above all the other plugins
+" this way we can be sure that variables set in .lvimrc are
+" effectively applied
+" embear/vim-localvimrc {{{
+Plug 'embear/vim-localvimrc'
+let g:localvimrc_ask=0
+" }}}
+
 " junegunn/fzf.vim {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -549,11 +557,6 @@ function! s:SetCorrectPermissionCodi()
 		call system('chmod u+x /tmp/cmd')
 	endif
 endfunction
-" }}}
-
-" embear/vim-localvimrc {{{
-Plug 'embear/vim-localvimrc'
-let g:localvimrc_ask=0
 " }}}
 
 " roman/golden-ratio {{{
