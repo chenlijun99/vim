@@ -546,8 +546,5 @@ function! s:SetCorrectPermissionCodi()
 endfunction
 " }}}
 
-" roman/golden-ratio {{{
-Plug 'roman/golden-ratio'
-" }}}
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
