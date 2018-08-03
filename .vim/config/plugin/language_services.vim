@@ -31,11 +31,6 @@ if has('nvim')
 
 	let g:deoplete#enable_at_startup = 1
 	let g:deoplete#omni#functions = {}
-	let g:deoplete#omni#functions.ruby = 'rubycomplete#Complete'
-	let g:deoplete#omni#functions.javascript = [
-				\ 'tern#Complete',
-				\ 'jspc#omni'
-				\]
 
 	" <C-h>, <BS>: close popup and delete backword char.
 	inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
@@ -198,8 +193,8 @@ let g:LanguageClient_serverCommands = {
 			\ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
 			\ 'php': ['php-language-server.php'],
 			\ 'typescript': ['tsserver'],
-			\ 'javascript': ['tsserver'],
-			\ 'javascript.jsx': ['tsserver']
+			\ 'javascript': ['javascript-typescript-stdio'],
+			\ 'javascript.jsx': ['javascript-typescript-stdio']
 			\ }
 
 augroup language_services

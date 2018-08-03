@@ -9,5 +9,6 @@ autocmd! User vim-fugitive call fugitive#detect(expand('%:p'))
 
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>ge :Gedit<cr>
 "}}}
 
