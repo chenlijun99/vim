@@ -105,6 +105,18 @@ else
 	endif
 	" }}}
 endif
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+	return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+	" For no inserting <CR> key.
+	"return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " {{{ Shougo/neosnippet
 Plug 'Shougo/neosnippet' , { 'on' : [] }
@@ -149,7 +161,6 @@ augroup load_echodoc
 augroup END
 "}}}
 
-
 " autozimu/LanguageClient-neovim {{{
 Plug 'autozimu/LanguageClient-neovim', {
 			\ 'branch': 'next',
@@ -170,7 +181,6 @@ vnoremap <silent> <space>s :call LanguageClient_textDocument_documentSymbol()<CR
 vnoremap <silent> <space>S :call LanguageClient_workspace_symbol()<CR>
 " }}}
 
-
 "w0rp/ale {{{
 Plug 'w0rp/ale'
 let g:ale_enabled=1
@@ -186,39 +196,6 @@ let g:ale_linters = {
 			\ 'html': ['htmlhint']
 			\}
 "}}}
-
-" setup language server
-let g:LanguageClient_serverCommands = {
-			\ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
-			\ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init', '{"cacheDirectory": "/tmp/cquery"}'],
-			\ 'php': ['php-language-server.php'],
-			\ 'typescript': ['tsserver'],
-			\ 'javascript': ['javascript-typescript-stdio'],
-			\ 'javascript.jsx': ['javascript-typescript-stdio']
-			\ }
-
-augroup language_services
-	autocmd!
-	" set LanguageClient#complete as omnifunc and disable ale
-	" for filetypes having language server available
-	"
-	" NOTE: no spaces between each filetype
-	autocmd FileType c,cpp,,php,typescript,javascript,javascript.jsx
-				\ setlocal omnifunc=LanguageClient#complete | let b:ale_enabled=0
-augroup END
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-	return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-	" For no inserting <CR> key.
-	"return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
