@@ -4,7 +4,7 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'filename', 'gutentags' ] ]
+      \             [ 'cocstatus', 'fugitive', 'filename', 'gutentags' ] ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'LightlineFugitive',
@@ -12,6 +12,7 @@ let g:lightline = {
       \   'modified': 'LightlineModified',
       \   'filename': 'LightlineFilename',
 	  \   'gutentags': 'gutentags#statusline',
+	  \   'cocstatus': 'coc#status',
 	  \   'language_server': 'LanguageClient#statusLine'
       \ },
       \ 'separator': { 'left': '|', 'right': '|' },

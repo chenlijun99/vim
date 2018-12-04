@@ -1,0 +1,14 @@
+{
+	"coc.preferences.autoTrigger": "trigger",
+	"coc.preferences.maxCompleteItemCount": 10,
+	"languageserver": {
+		"ccls": {
+			"command": "ccls",
+			"filetypes": ["c", "cpp", "objc", "objcpp"],
+			"revealOutputChannelOn": "never",
+			"initializationOptions": {
+				"cacheDirectory": "/tmp/ccls"
+			}
+		}
+	}
+}

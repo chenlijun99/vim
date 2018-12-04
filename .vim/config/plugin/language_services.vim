@@ -1,122 +1,76 @@
-	"Shougo/vimproc.vim {{{
-	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-	"}}}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
-if has('nvim')
-	" Shougo/deoplete.nvim {{{
-	Plug 'Shougo/deoplete.nvim', {
-				\ 'do': ':UpdateRemotePlugins',
-				\ 'on': []
-				\}
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-
-	let g:deoplete#omni#input_patterns = {}
-	let g:deoplete#omni#input_patterns.c =
-				\ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-	let g:deoplete#omni#input_patterns.cpp =
-				\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-	let g:deoplete#omni#input_patterns.objc =
-				\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-	let g:deoplete#omni#input_patterns.objcpp =
-				\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
-	let g:deoplete#omni#input_patterns.javascript = '[^. \t]\.\w*'
-	let g:deoplete#omni#input_patterns.perl = 
-				\ '\h\w*->\h\w*\|\h\w*::'
-	let g:deoplete#omni#input_patterns.ruby =
-				\ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
-	let g:deoplete#omni#input_patterns.java =
-				\ '[^. *\t]\.\w*'
-	let g:deoplete#omni#input_patterns.php =
-				\ '\w+|[^. \t]->\w*|\w+::\w*'
-
-	let g:deoplete#enable_at_startup = 1
-	let g:deoplete#omni#functions = {}
-
-	" <C-h>, <BS>: close popup and delete backword char.
-	inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-	inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
-
-	augroup load_deoplete
-		autocmd!
-		autocmd InsertEnter * call plug#load('deoplete.nvim')
-					\ | autocmd! load_deoplete
-	augroup END
-	" }}}
-else
-	" {{{ Shougo/neocomplete
-	if has("lua")
-		Plug 'Shougo/neocomplete' , { 'on' : [] }
-		augroup load_neocomplete
-			autocmd!
-			autocmd InsertEnter * call plug#load('neocomplete')
-						\ | autocmd! load_neocomplete
-		augroup END
-		autocmd! User neocomplete call neocomplete#init#enable()
-
-		"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-		let g:neocomplete#use_vimproc = 1
-		" Disable AutoComplPop.
-		let g:acp_enableAtStartup = 0
-		" Use neocomplete.
-		let g:neocomplete#enable_at_startup = 1
-		" Use smartcase.
-		let g:neocomplete#enable_smart_case = 1
-		" Set minimum syntax keyword length.
-		let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-		" Define dictionary.
-		let g:neocomplete#sources#dictionary#dictionaries = {
-					\ 'default' : '',
-					\ 'vimshell' : $HOME.'/.vimshell_hist',
-					\ 'scheme' : $HOME.'/.gosh_completions'
-					\ }
-
-		" Define keyword.
-		if !exists('g:neocomplete#keyword_patterns')
-			let g:neocomplete#keyword_patterns = {}
-		endif
-		let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-		" Plugin key-mappings.
-		inoremap <expr><C-g>     neocomplete#undo_completion()
-		inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-		inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-		inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
-		" AutoComplPop like behavior.
-		"let g:neocomplete#enable_auto_select = 1
-
-		" Enable heavy omni completion.
-		if !exists('g:neocomplete#force_omni_input_patterns')
-			let g:neocomplete#force_omni_input_patterns = {}
-		endif
-		let g:neocomplete#force_omni_input_patterns.c =
-					\ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-		let g:neocomplete#force_omni_input_patterns.cpp =
-					\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-		let g:neocomplete#force_omni_input_patterns.objc =
-					\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-		let g:neocomplete#force_omni_input_patterns.objcpp =
-					\ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
-		let g:neocomplete#force_omni_input_patterns.java = '\h\w*\.\w*'
-		let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
-		let g:neocomplete#force_omni_input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-	endif
-	" }}}
-endif
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-	return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-	" For no inserting <CR> key.
-	"return pumvisible() ? "\<C-y>" : "\<CR>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-@> coc#refresh()
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Setup formatexpr specified filetype(s).
+augroup mygroup
+  autocmd!
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+vmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+
+" Use `:Format` for format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` for fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
 
 " {{{ Shougo/neosnippet
 Plug 'Shougo/neosnippet' , { 'on' : [] }
@@ -151,51 +105,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "set conceallevel=2 concealcursor=niv
 "endif
 " }}}
-"Shougo/echodoc.vim {{{
-Plug 'Shougo/echodoc.vim', { 'on' : [] }
-let g:echodoc_enable_at_startup=1
-augroup load_echodoc
-	autocmd!
-	autocmd InsertEnter * call plug#load('echodoc.vim')
-				\ | autocmd! load_echodoc
-augroup END
-"}}}
-
-" autozimu/LanguageClient-neovim {{{
-Plug 'autozimu/LanguageClient-neovim', {
-			\ 'branch': 'next',
-			\ 'do': 'bash install.sh',
-			\ }, 
-
-" Enable omni completion.
-let g:LanguageClient_autoStart = 1
-
-nnoremap <silent> <space>h :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> <space>d :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <space>r :call LanguageClient_textDocument_rename()<CR>
-nnoremap <silent> <space>* :call LanguageClient_textDocument_references()<CR>
-nnoremap <silent> <space># :call LanguageClient_textDocument_references()<CR>
-nnoremap <silent> <space>f :call LanguageClient_textDocument_formatting()<CR>
-vnoremap <silent> <space>f :call LanguageClient_textDocument_rangeFormatting()<CR>
-vnoremap <silent> <space>s :call LanguageClient_textDocument_documentSymbol()<CR>
-vnoremap <silent> <space>S :call LanguageClient_workspace_symbol()<CR>
-" }}}
-
-"w0rp/ale {{{
-Plug 'w0rp/ale'
-let g:ale_enabled=1
-let g:ale_set_loclist=1
-let g:ale_open_list=0
-let g:ale_sign_column_always=1
-let g:ale_lint_on_text_changed=0
-let g:ale_lint_on_enter=0
-let g:ale_lint_on_save=1
-let g:ale_linters = {
-			\ 'javascript': ['jshint'],
-			\ 'java': ['javac'],
-			\ 'html': ['htmlhint']
-			\}
-"}}}
 
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
