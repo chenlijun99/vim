@@ -70,6 +70,10 @@ Plug 'junegunn/vim-slash'
 " }}}
 " junegunn/rainbow_parentheses.vim {{{
 Plug 'junegunn/rainbow_parentheses.vim'
+RainbowParentheses
+" }}}
+" junegunn/vim-easy-align {{{
+Plug 'junegunn/vim-easy-align', { 'on' : ['EasyAlign'] }
 " }}}
 
 "tpope/vim-dispatch {{{
@@ -547,6 +551,5 @@ function! s:SetCorrectPermissionCodi()
 	endif
 endfunction
 " }}}
-
 " set modeline
 " vim: foldlevel=0 foldmethod=marker
