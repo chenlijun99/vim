@@ -70,7 +70,6 @@ Plug 'junegunn/vim-slash'
 " }}}
 " junegunn/rainbow_parentheses.vim {{{
 Plug 'junegunn/rainbow_parentheses.vim'
-RainbowParentheses
 " }}}
 " junegunn/vim-easy-align {{{
 Plug 'junegunn/vim-easy-align', { 'on' : ['EasyAlign'] }
